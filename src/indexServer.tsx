@@ -1,3 +1,3 @@
 export function main() {
-  setInterval(() => { console.log("hello!") });
+  setInterval(() => { console.log("hey!") }, 10000);
 }
