@@ -1,5 +1,5 @@
 
-import { main } from "./indexClient";
+import { main } from "./indexServer";
 
 main()
   

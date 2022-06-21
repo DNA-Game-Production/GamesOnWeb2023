@@ -35,6 +35,12 @@ type PeerMap = Arc<Mutex<HashMap<SocketAddr, Tx>>>;
 type SharedMessages = Arc<Mutex<Vec<Message>>>;
 type PositionUpdates = Arc<Mutex<HashMap<String, String>>>;
 
+#[cfg(windows)]
+pub const NPM: &'static str = "npm.cmd";
+
+#[cfg(not(windows))]
+pub const NPM: &'static str = "npm";
+
 #[tokio::main]
 async fn main() -> Result<(), IoError> {
     let port = env::var("PORT").unwrap_or_else(|_| "8080".to_string());
@@ -63,7 +69,13 @@ async fn main() -> Result<(), IoError> {
         monster_list.clone(),
     ));
 
-    //let fictive_client = Command::new("../npm").arg("run").arg("starts").status()?;
+    let fictive_client = Command::new(NPM)
+        .arg("run")
+        .arg("starts")
+        .output()
+        .expect("failed to execute process");
+
+    println!("{:?}", fictive_client);
 
     // spawn the handling of each connection in a separate task.
     while let Ok((stream, addr)) = listener.accept().await {
