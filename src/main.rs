@@ -10,6 +10,7 @@ use std::{
 
 use futures_channel::mpsc::UnboundedSender;
 use serde::{Deserialize, Serialize};
+use std::process::Command;
 use tokio::net::TcpListener;
 use tungstenite::protocol::Message;
 
@@ -61,6 +62,8 @@ async fn main() -> Result<(), IoError> {
         state.clone(),
         monster_list.clone(),
     ));
+
+    //let fictive_client = Command::new("../npm").arg("run").arg("starts").status()?;
 
     // spawn the handling of each connection in a separate task.
     while let Ok((stream, addr)) = listener.accept().await {
