@@ -1,6 +1,6 @@
-import { Animation, AbstractMesh, AnimationGroup, Axis, Color3, Color4, GlowLayer, HighlightLayer, IParticleSystem, Matrix, Mesh, MeshBuilder, ParticleHelper, ParticleSystem, PointLight, Quaternion, SceneLoader, Skeleton, StandardMaterial, Texture, Vector3, ShadowGenerator } from "babylonjs";
+import { AnimationGroup, Color3, IParticleSystem, Mesh, MeshBuilder, PointLight, Skeleton, StandardMaterial, Vector3, ShadowGenerator } from "babylonjs";
 import { scene, sphere1 } from "./main";
-import { MyScene } from "./scene";
+import { MySceneClient } from "./scene/scene";
 
 import 'babylonjs-loaders';
 import { createFire } from "./particules";
@@ -26,7 +26,7 @@ export class ModelEnum {
         this.scaling = scaling;
     }
 
-    createModel(scene: MyScene) {
+    createModel(scene: MySceneClient) {
         //A priori, all gltf extension file will be (automatically) named "scene", else the same name of the respective folder
         let meshTask = scene.assetManager.addMeshTask(this.name + "_task", "", "models/" + this.name + "/", (this.extension == "gltf" ? "scene" : this.name) + "." + this.extension);
         meshTask.onSuccess = (task) => {
@@ -112,8 +112,8 @@ export class ModelEnum {
 
     }
 
-    static createAllModels(scene: MyScene) {
-        var allModels = [this.PumpkinMonster, this.Grass, this.Campfire]
+    static createAllModels(scene: MySceneClient) {
+        var allModels = [this.PumpkinMonster, this.Grass]
         allModels.forEach(m => m.createModel(scene))
     }
 }

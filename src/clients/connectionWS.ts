@@ -135,6 +135,8 @@ function setSocketMessageListener() {
             case serverMessages.MONSTER_DATA: {
                 let messageContent: receiveContent = JSON.parse(messageReceived.content);
                 avatar_update_from_serveur(messageContent, night_monster_list, 500, true);
+                let d = new Date();
+                if (messageContent.username == "zombie0") console.log("received z0 update: " + d.getMilliseconds());
                 break;
             }
 
@@ -264,10 +266,16 @@ export function avatar_update_from_serveur(data: receiveContent, list: Map<Strin
         if (avatar_to_update) avatar_to_update.position = new Vector3(data.pos_x, data.pos_y, data.pos_z);
     }
 
+    if (avatar_to_update?.name == "zombie0") {
+        console.log("current position: " + avatar_to_update.position);
+        console.log("received pos: " + data.pos_x + ", " + data.pos_y + ", ", + data.pos_z);
+    }
+
     //avatar_to_move should now be affected and we can give it the new position
     if (avatar_to_update) {
         if (avatar_to_update.position.x !== data.pos_x || avatar_to_update.position.y !== data.pos_y || avatar_to_update.position.z !== data.pos_z) {
-            Animation.CreateAndStartAnimation("animMove", avatar_to_update, "position", 60, Math.floor(0.06 * time_ms), avatar_to_update.position, new Vector3(data.pos_x, data.pos_y, data.pos_z), Animation.ANIMATIONLOOPMODE_CONSTANT);
+            if (avatar_to_update.name == "zombie0") console.log("starting move anim for z0");
+            Animation.CreateAndStartAnimation("animMove", avatar_to_update, "position", 60, Math.floor(0.7 * time_ms), avatar_to_update.position, new Vector3(data.pos_x, data.pos_y, data.pos_z), Animation.ANIMATIONLOOPMODE_CONSTANT);
         }
 
 

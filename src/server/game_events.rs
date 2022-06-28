@@ -37,7 +37,7 @@ pub async fn game_events(peer_map: PeerMap, monster_list: MonsterList) {
                 .unwrap();
 
             //send updated monster data to all clients
-            if hour > 22.0 || hour < 7.0 {
+            if hour > 22.0 || hour < 21.0 {
                 for monster in monster_list.values() {
                     recp.unbounded_send(Message::from(monster_message_data(monster)))
                         .unwrap();

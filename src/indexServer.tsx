@@ -1,26 +1,37 @@
-import { ArcRotateCamera, Axis, NullEngine, PointLight, Scene, Vector3 } from "babylonjs";
+import { ArcRotateCamera, Axis, Engine, PointLight, Vector3 } from "babylonjs";
+import { AvaterInterface as AvatarInterface } from "./AvatarInterface";
+import { MyScene } from "./clients/babylon/scene/fictive_myScene";
 import { Avatar } from "./clients/fictif/fictive_avatar";
 import { receiveContent, serverMessages } from "./clients/fictif/fictive_connectionWS";
 import { distance } from "./clients/fictif/fictive_tools";
 
-var night_monster_list: Map<string, Avatar> = new Map();
-var player_list: Map<string, Avatar> = new Map();
+var night_monster_list: Map<string, AvatarInterface> = new Map();
+var player_list: Map<string, AvatarInterface> = new Map();
 var zombie_counter: number;
-var scene: Scene;
+var scene: MyScene;
 var ws: WebSocket
+
+export var canvas: HTMLCanvasElement;
 
 export function main() {
 
   // var BABYLON = require("../../dist/preview release/babylon.max");
   // var LOADERS = require("../../dist/preview release/loaders/babylonjs.loaders");
-  // global.XMLHttpRequest = require('xhr2').XMLHttpRequest;
+  // var XMLHttpRequest = require('xhr2');
+  // var xhr = new XMLHttpRequest();
 
-  var engine = new NullEngine();
-  scene = new Scene(engine);
-
+  var canvas = document.getElementById("canvas") as HTMLCanvasElement
+  canvas.style.width = "100%"
+  canvas.style.height = "100%"
+  var engine = new Engine(canvas);
+  scene = new MyScene(engine)
   var light = new PointLight("Omni", new Vector3(20, 20, 100), scene);
+  var camera = new ArcRotateCamera("Camera", 0, 0.8, 15, Vector3.Zero(), scene);
+  camera.attachControl(true);
 
-  var camera = new ArcRotateCamera("Camera", 0, 0.8, 100, Vector3.Zero(), scene);
+
+  engine.runRenderLoop(() => scene.render());
+
 
   zombie_counter = 0;
 
@@ -94,17 +105,35 @@ export function main() {
       }
     })
 
+    // engine.runRenderLoop(function () {
+    //   if (scene && scene.activeCamera) {
+    //     for (const monster of night_monster_list.values()) {
+    //       //scene.applyGravity(monster);
+    //       monster.moveWithCollisions(monster.getDirection(Axis.Z).scale(monster.speed_coeff));
+    //       console.log("monster " + monster.name + " pos: " + monster.position);
+    //     }
+    //   }
+    // });
+
+    setInterval(() => {
+      for (const monster of night_monster_list.values()) {
+        // monster.moveWithCollisions(monster.getDirection(Axis.Z).scale(monster.speed_coeff));
+        scene.applyGravity(monster);
+        monster.setRayPosition();
+      }
+    }, 1000 / 60)
+
     setInterval(() => {
       for (const monster of night_monster_list.values()) {
         zombie_apply_AI(monster);
       }
     },
-      500)
+      100)
   }
 }
 
-function zombie_apply_AI(monster: Avatar) {
-  let player_to_target: Avatar | null = nearest_player(monster);
+function zombie_apply_AI(monster: AvatarInterface) {
+  let player_to_target: AvatarInterface | null = nearest_player(monster);
   if (player_to_target) {
     monster.lookAt(new Vector3(player_to_target.position.x, monster.position.y, player_to_target.position.z));
     if (distance(monster.position, player_to_target.position) < 2) {
@@ -120,9 +149,9 @@ function zombie_apply_AI(monster: Avatar) {
     }
   }
   monster.computeWorldMatrix(true);
-  console.log("new direction: " + monster.getDirection(Axis.Z));
-  monster.position.x += monster.getDirection(Axis.Z)._x
-  monster.position.z += monster.getDirection(Axis.Z)._z
+  // monster.position.x += monster.getDirection(Axis.Z)._x
+  // monster.position.z += monster.getDirection(Axis.Z)._z
+  monster.moveWithCollisions(monster.getDirection(Axis.Z).scale(monster.speed_coeff * 6))
   ws.send(
     JSON.stringify({
       route: serverMessages.MOVE_MONSTER,
@@ -134,6 +163,9 @@ function zombie_apply_AI(monster: Avatar) {
         direction: JSON.stringify(monster.getDirection(Axis.Z))
       })
     }))
+  if (monster.name === "zombie0")
+    console.log("" + monster.name + " : " + monster.position);
+
 }
 
 function generate_zombie_wave() {
@@ -163,8 +195,8 @@ function spawn_zombie(pos_x: number, pos_y: number, pos_z: number) {
   zombie_counter++
 }
 
-function nearest_player(monster: Avatar) {
-  var nearest_player: Avatar | null = null;
+function nearest_player(monster: AvatarInterface) {
+  var nearest_player: AvatarInterface | null = null;
   var dist = Infinity
   for (var player of player_list.values()) {
     let dist_to_player = distance(monster.position, player.position);

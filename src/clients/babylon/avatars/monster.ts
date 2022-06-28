@@ -1,9 +1,8 @@
-import { Avatar } from "./avatar";
-import { Health } from "../meshWithHealth";
-import { MyScene } from "../scene";
-import { Axis, MeshBuilder, Scene, Vector3 } from "babylonjs";
+import { Scene } from "babylonjs";
 import { sphere1 } from "../main";
+import { Health } from "../meshWithHealth";
 import { distance } from "../tools";
+import { Avatar } from "./avatar";
 
 export class Monster extends Avatar {
 

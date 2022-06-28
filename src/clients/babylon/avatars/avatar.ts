@@ -1,11 +1,12 @@
 import { Color3, Mesh, MeshBuilder, Ray, Scene, StandardMaterial, Vector3 } from "babylonjs";
-import { Health, MeshWithHealth } from "../meshWithHealth";
-import { createLabel } from "../tools";
-import { shadowGenerator } from "../scene";
-import { ModelEnum, shadowGeneratorCampfire } from "../models";
+import { AvaterInterface } from "../../../AvatarInterface";
 import { windowExists } from "../../reactComponents/tools";
+import { Health, MeshWithHealth } from "../meshWithHealth";
+import { ModelEnum } from "../models";
+import { shadowGenerator } from "../scene/scene";
+import { createLabel } from "../tools";
 
-export class Avatar extends MeshWithHealth {
+export class Avatar extends MeshWithHealth implements AvaterInterface {
   speed_coeff: number;
   shape: Mesh | undefined;
   didSomething: Boolean;
@@ -15,11 +16,13 @@ export class Avatar extends MeshWithHealth {
   timeJumping: number;
   lastShoot?: number;
   ray: Ray;
-  jumpRay: Ray
+  jumpRay: Ray;
+  gravity_acceleration: number;
 
   constructor(scene: Scene, avatar_username: string, username: string, p?: { bulletDelay?: number, health?: Health }) {
     super(avatar_username, scene, p?.health);
 
+    this.gravity_acceleration = 0;
     let model;
     if (windowExists() && this.name.includes("zombie") && ModelEnum.PumpkinMonster.rootMesh != undefined) {
       model = ModelEnum.PumpkinMonster.rootMesh?.clone();
@@ -78,6 +81,9 @@ export class Avatar extends MeshWithHealth {
     this.timeJumping = 250;
 
     shadowGenerator?.addShadowCaster(this)
+  }
+  setRayPosition() {
+    throw new Error("Method not implemented.");
   }
 
   dispose(): void {

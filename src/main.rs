@@ -73,10 +73,10 @@ async fn main() -> Result<(), IoError> {
         monster_list.clone(),
     ));
 
-    let ai_client = Command::new("node")
-        .arg(find_js_file())
-        .arg(&port[..])
-        .spawn()?;
+    // let ai_client = Command::new("node")
+    //     .arg(find_js_file())
+    //     .arg(&port[..])
+    //     .spawn()?;
 
     // spawn the handling of each connection in a separate task.
     while let Ok((stream, addr)) = listener.accept().await {

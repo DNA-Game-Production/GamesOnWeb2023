@@ -1,6 +1,6 @@
 import { Animation, AnimationGroup, Color3, Vector3 } from "babylonjs";
 import { scene } from "./main";
-import { hemiLight, light } from "./scene";
+import { hemiLight, light } from "./scene/scene";
 
 export function createDayNightCycle(origin: number): AnimationGroup {
     //s = Time Interval Server 24h => 24 * 4 * 0.5 sec = 48 sec

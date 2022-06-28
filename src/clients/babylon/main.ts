@@ -4,11 +4,11 @@ import { windowExists } from "../reactComponents/tools";
 import { Player } from "./avatars/player";
 
 import { inializeInputListeners } from "./inputListeners";
-import { MyScene } from "./scene";
+import { MySceneClient } from "./scene/scene";
 
 export var canvas: HTMLCanvasElement;
 export var engine: Engine;
-export var scene: MyScene;
+export var scene: MySceneClient;
 export var sphere1: Player | undefined;
 
 let doneOnce = false;
@@ -48,7 +48,7 @@ export let initFunction = async function () {
   if (!engine) throw new Error('engine should not be null.');
   //startRenderLoop(engine, canvas);
 
-  let scene = new MyScene();
+  let scene = new MySceneClient(engine);
   scene.assetManager.load();
 
   setWindowParams()
@@ -69,7 +69,7 @@ export function set_my_sphere() {
   }
 }
 
-export function setScene(e: MyScene | undefined) {
+export function setScene(e: MySceneClient | undefined) {
   if (e === undefined) {
     throw new Error("Undefined Scene")
   } else {
@@ -80,7 +80,7 @@ export function setScene(e: MyScene | undefined) {
 declare global {
   interface Window {
     playerList: Map<string, Player>,
-    scene: MyScene,
+    scene: MySceneClient,
     engine: Engine
     BABYLON: any;
   }
