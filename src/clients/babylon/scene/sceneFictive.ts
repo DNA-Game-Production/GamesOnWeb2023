@@ -25,38 +25,38 @@ export class SceneFictive extends SceneSoft {
         const groundMinheight = -1;
         const groundMaxheight = 2;
 
-        let groundOptions = () => {
-            return {
-                width: groundWidth,
-                height: groundLenght,
-                subdivisions: 32,
-                minHeight: groundMinheight,
-                maxHeight: groundMaxheight,
+        // let groundOptions = () => {
+        //     return {
+        //         width: groundWidth,
+        //         height: groundLenght,
+        //         subdivisions: 32,
+        //         minHeight: groundMinheight,
+        //         maxHeight: groundMaxheight,
 
-                onReady: () => onGroundCreated(),
-            }
-        }
+        //         onReady: () => onGroundCreated(),
+        //     }
+        // }
 
         // var ground = MeshBuilder.CreateGround(
         //     groundName,
         //     groundOptions(),
         // )
 
-        var ground = MeshBuilder.CreateGroundFromHeightMap(
-            groundName,
-            heightmapTexture,
-            groundOptions(),
-            this
-        );
+        // var ground = MeshBuilder.CreateGroundFromHeightMap(
+        //     groundName,
+        //     heightmapTexture,
+        //     groundOptions(),
+        //     this
+        // );
 
 
-        let onGroundCreated = () => {
-            ground.position.y -= groundMaxheight;
-            ground.checkCollisions = true;
-            this.ground = ground;
-            console.log("ground: " + ground);
-            console.log("ground y: " + ground.position.y);
-            ground.isPickable = true
-        }
+        // let onGroundCreated = () => {
+        //     ground.position.y -= groundMaxheight;
+        //     ground.checkCollisions = true;
+        //     this.ground = ground;
+        //     console.log("ground: " + ground);
+        //     console.log("ground y: " + ground.position.y);
+        //     ground.isPickable = true
+        // }
     }
 };

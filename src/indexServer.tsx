@@ -46,36 +46,28 @@ export function main() {
 
   ConnectionServer.setGlobalWebSocket(scene)
 
-  // engine.runRenderLoop(function () {
-  //   if (scene && scene.activeCamera) {
-  //     for (const monster of night_monster_list.values()) {
-  //       //scene.applyGravity(monster);
-  //       monster.moveWithCollisions(monster.getDirection(Axis.Z).scale(monster.speed_coeff));
-  //       console.log("monster " + monster.name + " pos: " + monster.position);
-  //     }
-  //   }
-  // });
-
   setInterval(() => {
     for (const monster of ws.night_monster_list.values()) {
       var direction = monster.getDirection(Axis.Z);
       if (monster.name == "zombie0") {
         console.log("----------");
         console.log("direction: ", direction);
+        console.log("position: ", monster.position)
       }
+      // direction = direction.applyRotationQuaternion(Quaternion.FromEulerAngles(0, BABYLON.Tools.ToRadians(90), 0));
       // monster.moveWithCollisions(direction.scale(monster.speed_coeff));
       monster.moveWithCollisions(direction);
       // monster.position.x += direction.x
       // monster.position.z += direction.z
-      monster.applyGravity();
-      monster.setRayPosition()
+      // monster.applyGravity();
+      // monster.setRayPosition()
     }
   }, 1000 / 60)
 
   setInterval(() => {
-    for (const monster of ws.night_monster_list.values()) {
-      zombie_apply_AI(monster);
-    }
+    // for (const monster of ws.night_monster_list.values()) {
+    //   zombie_apply_AI(monster);
+    // }
   },
     100)
 }
