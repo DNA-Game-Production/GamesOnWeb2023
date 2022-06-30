@@ -1,4 +1,4 @@
-import { ArcRotateCamera, Axis, Engine, NullEngine, PointLight, Vector3 } from "babylonjs";
+import { ArcRotateCamera, Axis, Engine, MeshBuilder, NullEngine, PointLight, Vector3 } from "babylonjs";
 import { AvatarFictive } from "./clients/babylon/avatars/avatarFictif";
 import { AvatarSoft } from "./clients/babylon/avatars/avatarSoft";
 import { distance } from "./clients/babylon/others/tools";
@@ -46,9 +46,25 @@ export function main() {
 
   ConnectionServer.setGlobalWebSocket(scene)
 
+  // ----------------------------THIS WORKS
+
+  // var sphere_exemple = MeshBuilder.CreateSphere("sphere", { diameter: 2, segments: 32 }, scene);
+  // sphere_exemple.position.y = 1;
+  // sphere_exemple.checkCollisions = true;
+
+  // setInterval(() => {
+  //   var direction = sphere_exemple.getDirection(Axis.Z);
+  //   sphere_exemple.moveWithCollisions(direction.scale(10))
+  //   console.log("direction: ", direction.scale(10))
+  //   console.log("position: ", sphere_exemple.position)
+  // }, 1000)
+
+  // ---------------------------THIS DOESN'T WORK (zombies go slowly to right instead of respecting the given direction)
+
   setInterval(() => {
     for (const monster of ws.night_monster_list.values()) {
       var direction = monster.getDirection(Axis.Z);
+
       if (monster.name == "zombie0") {
         console.log("----------");
         console.log("direction: ", direction);
@@ -64,12 +80,12 @@ export function main() {
     }
   }, 1000 / 60)
 
-  setInterval(() => {
-    // for (const monster of ws.night_monster_list.values()) {
-    //   zombie_apply_AI(monster);
-    // }
-  },
-    100)
+  // setInterval(() => {
+  // for (const monster of ws.night_monster_list.values()) {
+  //   zombie_apply_AI(monster);
+  // }
+  // },
+  // 100)
 }
 
 
