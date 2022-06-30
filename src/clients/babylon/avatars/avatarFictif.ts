@@ -14,7 +14,7 @@ export class AvatarFictive extends AvatarSoft {
 
         this.ellipsoid = new Vector3(0.5, 1, 0.5);
         this.checkCollisions = true;
-        sphere.checkCollisions = true;
+        // sphere.checkCollisions = true;
         this.gravity_acceleration = -0.05;
 
         sphere.parent = this;

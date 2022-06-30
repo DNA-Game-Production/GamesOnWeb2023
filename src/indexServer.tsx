@@ -142,7 +142,7 @@ function spawn_zombie({ pos_x, pos_y, pos_z }: position) {
   let generated_zombie = new AvatarFictive(scene, "zombie" + zombie_counter);
   generated_zombie.position = new Vector3(pos_x, pos_y, pos_z);
   ws.night_monster_list.set(generated_zombie.name, generated_zombie);
-  generated_zombie.computeWorldMatrix(true);
+  // generated_zombie.computeWorldMatrix(true);
   ws.send(JSON.stringify({
     route: serverMessages.SPAWN_MONSTER,
     content: JSON.stringify({
