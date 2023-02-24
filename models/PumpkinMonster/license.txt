@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Pumpkin Mage
+* source:	https://sketchfab.com/3d-models/the-pumpkin-mage-1d4a203a2aa742faa04cfeab6486ce6e
+* author:	wilsonghm99 (https://sketchfab.com/wilsonghm99)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Pumpkin Mage" (https://sketchfab.com/3d-models/the-pumpkin-mage-1d4a203a2aa742faa04cfeab6486ce6e) by wilsonghm99 (https://sketchfab.com/wilsonghm99) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
