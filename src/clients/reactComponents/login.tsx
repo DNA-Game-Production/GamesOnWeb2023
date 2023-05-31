@@ -50,7 +50,7 @@ export class ReactLogin extends Component<Props, State> {
               onChange={e =>
                 this.setState({ class: e.currentTarget.value as PLAYER_CLASSES_TYPE })
               }
-              style={{ backgroundImage: "" }}
+              style={{ backgroundImage: "none" }}
             >
               <option disabled hidden>{PLAYER_CLASSES_LIST[0]}</option>
               {/* {PLAYER_CLASSES_LIST.map((option, index) => {
