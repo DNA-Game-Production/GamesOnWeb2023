@@ -59,7 +59,7 @@ A third student, VENTURELLI Antoine, was originally included in the project and 
 
 ## Step 1 : a basic multiplayer game
 
-When we look at what the game look like now, it might come as a surprise to know how it started : a glorified minichat. We wanted to learn how to program a server, and thought it would be fun to be able to play and test together the game we were developing together. At this stage, we didn't even precisely know what the game would be like, but we wanted to make a server first to better understand how it works and be able to picture how we coud make a multiplayer game.
+When we look at what the game look like now, it might come as a surprise to know how it started : a glorified $. We wanted to learn how to program a server, and thought it would be fun to be able to play and test together the game we were developing together. At this stage, we didn't even precisely know what the game would be like, but we wanted to make a server first to better understand how it works and be able to picture how we coud make a multiplayer game.
 
 We also wanted to make the server in the Rust language. None of us knew how to program in Rust, but we were interested in learning and it is a very good option for servers as it is a language with a high control, security, and performance.
 
@@ -113,13 +113,13 @@ We also wanted to have a Day/Night cycle that would make the landscape more vari
 
 ## Step 5 : Camera movement
 
-BabylonJS offers some interesting option for cameras, however going with one of the default one wasn't quite enough for our needs. For a third person game, a FollowCamera is the best choice, but we add the problem of it going under the ground if the player would turn his back on a slope. Our islands having quite a lot of relief, we had to modify the camera to fit our needs - we added a front and back laser for the camera to know if it is under the ground, and if not how far behind the ground it. This way, the camera get closer to the player when needed to avoid going under the ground, all the while trying to position itself as close to its normal distance to the player at all time.
+BabylonJS offers some interesting options for cameras, however our specific needs called for addition onto them. For a third person game, a FollowCamera is the best choice, but we had the problem of it going under the ground if the player would turn his back on a slope. Our islands having quite a lot of relief, we had to modify the camera - we added a front and back laser for the camera to know if it is under the ground, and if not how far behind the ground it. This way, the camera get closer to the player when needed to avoid going under the ground, all the while trying to position itself as close to its normal distance to the player at all time. The player also becomes semi-transparent if the camera gets too close, which is a classic technique used in games to avoid the player obstrucating the view when the camera gets too close.
 
 ***
 
 ## Step 6 : performance issues
 
-All in all, the game is overall not performance-hungry thanks to our work on the physic, and the fact each player and calculate his own physic so one client never has a lot of things calculate. However, that changed with the introduction of the forest. Because of the high number of objects, the number of frames per seconds dropped really low. To improve on that issue, we implemented an [LoD (Level of Detail)](https://en.wikipedia.org/wiki/Level_of_detail_(computer_graphics)) on trees so we don't have to display high-quality details from afar. We create the trees as instances of the model, for which we freeze the coordinates to lower the computation as much as possible. After working on that, we managed to get back to a good amount of frame per seconds.
+All in all, the game is overall not performance-hungry thanks to our work on the physic, as each player only needs to calculate calculate his own movements and not the ones of the other players or monsters, which are transmitted by the server. However, the introduction of the forest made performance much tighter. Because of the high number of trees, the number of frames per seconds dropped really low. To improve on that issue, we implemented an [LoD (Level of Detail)](https://en.wikipedia.org/wiki/Level_of_detail_(computer_graphics)) on trees so we don't have to display high-quality details from afar. We create the trees as instances of the model, for which we freeze the coordinates to lower the computation as much as possible. After working on that, we managed to get back to a good amount of frame per seconds.
 
 Another important part of performance is that we avoid using collision on complex models (player's model, trees...), and instead link objects to a simple hitbox that correspond to the shape of the model, often a cylinder.
 
@@ -132,26 +132,30 @@ It is also interesting to notice that the game physic do not depend on the perfo
 With our approach on the dumb server / smart client issue, we had difficulties on how to implement the monster's artificial intelligence and movements. Here are the options that were considered :
 
 - One client chosen as the host for the game, which means the monster's caclulations would be made on his side for everyone. Not only this option could create wrong behaviors and large inconveniencies if the host doesn't have a performant enough computer, this would also create difficult to handle cases when the host disconnects.
-- Each client spawn a few monsters and handles them. This is a rather elegant solution performance wise, 
+- Each client spawn a few monsters and handles them. This is a rather elegant solution performance wise, however it introduces a lot of problems on players disconnection as any monster could disappear.
 - The server when launched instantiate a special "server-side client", which is a windowless BabylonJS program that contains a minimalist version of the game and is in charge of the monster's intelligence and movements. This is the option we ended up choosing as it is a lot more straightforward to implement and we were more limited in resources on the client-side than on the server-side.
 
 ***
 
 ## Step 8 : deployement
 
-For the deployment, we chose to use Heroku for the server and Github Pages for the client. We already had experience with both, and those are free resources for us. However, our complex implementation of the server, which needed a rust and a javascript environment, and to be able to launch sub-processes, made the deployment of the server much more complicated than we hoped.
+For the deployment, we chose to use Heroku for the server and Github Pages for the client. We already had experience with both, and those are free resources for us. However, our complex implementation of the server, which needed a rust and a javascript environment, and to be able to launch sub-processes, made the deployment of the server much more complicated than we hoped. We also had problems with the size of the project, as it was too large for most hebergement websites.
 
-problem of project's size (-> docker)
-CD/CI
+To be able to control our server's environment, we therefore used docker to make a container with it. Once dockerised, heberging the container is a lot easier and more controlled than trying to directly heberge our backend code. Using Docker also allowed us to only heberge the file needed.
+
+The process of building the frontend code, building the backend code, creating the docker container, pushing onto our repository, and updating the backend on Heroku was very long and tedious. In order to make our workflow easier and faster, and constantly have an updated version online, we set up a continuous integration pipeline so that a simple push would automaticaly do all the tasks described above. This was a huge quality of life improvement for us and we'll be sure to incorporate it from the start in our future projects.
 
 ***
 
 ## Step 9 : finalization
 
-animations
-visuals
-sounds
-glider
+With the biggest stepping stone now done, it was time to enter the finalization stage of the game. We had a lot of small bugs to fix and improvements to make so that our game become more of a finalized project and less of a early concept.
+
+First of all we had to use proper character models and animate them. We tried a lot of models but animating them was difficult and time consuming, but after some research we stubbled onto [Mixamo](https://www.mixamo.com/#/), a free website that allows us to download models and attahc animation to them. Using Blender once again, we were able to combine many animations into a models. Once imported, we still had a lot of issues regarding the way to import models, but after working on a refactor we manage to get everything to work as we wanted. All characters now have a variable representing their state, such as "walking", "dying", "swimming of "glinding". The model's animation are declenched according to a state machine using these state and their transitions.
+
+It is also important in a game to have a pleasing soundscape so that it does not feel dull. While we kept things quite calm to not distract the player too much, we added the necessary sounds to make the world feel more alive.
+
+Finally, what is a third person action game without a glider? Pretty much every major release that looks anything alike our game has a glider in it, and for good reasons - it's just that fun ! This is one of the final touches that gave a little extra to the game, and with the work on the scenery, a glider felt like the perfect addition to get a better view while having a funnier way to move around. Moreover, it was a rather easy addition as we just needed to give the player a constant vertical force and prevent the gravity to accelerate them while they glide. We added a rather long laser to check if the player has enough space to glide before allowing them to do so, so go on the tallest cliff you can find and spring your wings !
 
 ***
 
@@ -170,24 +174,3 @@ We hope that you will enjoy your time on the game as much as we enjoyed developi
 While the projct is deployed on heroku and playable simply by clicking on [this link](https://dna-game-production.github.io/GamesOnWeb2023/), it is also possible to launch it localy after having imported the source code. In the project's root, open two terminal and enter the following command:
 - <i>cargo run</i> to launch the rust server.
 - <i>npm run startc</i> to launch the javascript client.
-
-***
-
-Structure
--npm, lancement de l'IA depuis le serveur
-
-Serveur
--comment le serveur marche, quel est son role
--version originel d'un terrain plat, des joueurs qui bougent et un mini-chat
-
-Collisions
--Difficultés avec les déplacement des zombies
--Changement des collisions sur les models vers des collisions par hitbox
-
-Terrain
--problematique serveur (pas de heightmap)
--Blender (shader, ANT landscape...)
--problématiques d'export
-
-Déploiement
--github pages + Heroku, problématique Heroku
