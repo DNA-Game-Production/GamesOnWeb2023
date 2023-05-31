@@ -1,75 +1,83 @@
-***
-# <p  align="center">[Multiplayer 3D Game](https://DNA-Game-Production.github.io/GamesOnWeb2023/) <font size="4">with [*Babylon.js*](https://www.babylonjs.com/)</font><p>
-## <p  align="center">by *D.N.A. Production*<p>
-***
+
+# <p align="center">[Multiplayer 3D Game](https://DNA-Game-Production.github.io/GamesOnWeb2023/) <font size="4">with [*Babylon.js*](https://www.babylonjs.com/)</font><p>
+
+- [Multiplayer 3D Game with *Babylon.js*](#multiplayer-3d-game-with-babylonjs)
+- [The team](#the-team)
+- [Goal](#goal)
+- [How to play the game](#how-to-play-the-game)
+  - [Controls](#controls)
+- [History, Details and Difficulties of the Development](#history-details-and-difficulties-of-the-development)
+  - [Step 1 : a basic multiplayer game](#step-1--a-basic-multiplayer-game)
+  - [Step 2 : Setting our Goals](#step-2--setting-our-goals)
+  - [Step 3 : Physics](#step-3--physics)
+  - [Step 4 : Creation of the World](#step-4--creation-of-the-world)
+  - [Step 5 : Camera movement](#step-5--camera-movement)
+  - [Step 6 : performance issues](#step-6--performance-issues)
+  - [Step 7 : the monsters](#step-7--the-monsters)
+  - [Step 8 : deployement](#step-8--deployement)
+  - [Step 9 : finalization](#step-9--finalization)
+- [Perspectives](#perspectives)
+- [Launch the Game Localy](#launch-the-game-localy)
+
+
+# The team
+
+|                                    FISSORE Davide                                     |                                    BERNIGAUD Noé                                     |
+| :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| <img src="https://zupimages.net/up/23/06/ol5u.png" alt="Fissore Davide" width="200"/> | <img src="https://zupimages.net/up/22/19/dak6.png" alt="BERNIGAUD Noé" width="200"/> |
+
+We are students at the University of Côte d'Azur..
   
-# <p  align="center">[CLICK HERE TO PLAY THE GAME](https://DNA-Game-Production.github.io/GamesOnWeb2023/)</p>
+- FISSORE Davide was in charge of the menus and UI, the structure of the project, DevOps pipelines and deployment.</li>
+- BERNIGAUD Noé was taking care of the rust server, the islands creation, the models and their animations, the game physics, gameplay and sounds.
+
+However, despite our specialization that occurred during the project, we always stayed polyvalent and were able to help each other out whenever someone had a block.
+
+A third student, VENTURELLI Antoine, was originally included in the project and participated in the early versions of the game's logic and physics. Unfortunately, he left the computing science field as well as the project during the first iterations.
   
-***
 
 # Goal 
-  The goal of this project was the creation of a 3D Multiplayer Survival game with [<b>Babylon.js</b>](https://www.babylonjs.com/) in Spring of 2023 for the Game on Web 2023 contest. The theme was "To Be Green".
-  
-***
+  The goal of this project was the **creation of a 3D Multiplayer Survival game** with [<b>Babylon.js</b>](https://www.babylonjs.com/) in Spring of 2023 for the Game on Web 2023 contest. The theme was "To Be Green".
 
 # How to play the game
 
 First of all, you can launch the game simply by clicking [this link](https://dna-game-production.github.io/GamesOnWeb2023/). You will be asked to enter a name for your character and you're good to go !
 
-Because of humanity's greed and avidity, the planet ran out of resources and society collapsed. Your are a survivor who took refuge on an archipelago, and have nothing but your will and body to defend yourself. Your goal is to survive the hostile environment, and in particular, monsters that will spawn at nights.
+Because of humanity's *greed* and *avidity*, the planet ran out of resources and society collapsed. Your are a survivor who took refuge on an archipelago and have nothing but your will and body to defend yourself. Your goal is to survive the hostile environment and, in particular, monsters that will spawn at night.
 
 This is a multiplayer game, so you might not be the only survivor on the archipelago. Other players live and die by the same rules as you, so choose to cooperate with them in order to become stronger as a group. Or, you could also attack them to make the archipelago your own...
 
 ## Controls
 
-- Z : walk forward
-- Z + SHIFT : run forward
-- S : walk backward
-- Q : rotate left
-- D : rotate right
-- Left Mouse Button : Attack
-- SPACE : jump
-- SPACE (while falling) : deploy glider
-- ENTER : open the in-game chat
-
-***
-
-# The *D.N.A. Production* team
-
-FISSORE Davide | BERNIGAUD Noé 
-:-------------------------:|:-------------------------:
-<img src="https://zupimages.net/up/23/06/ol5u.png" alt="Fissore Davide" width="200"/> | <img src="https://zupimages.net/up/22/19/dak6.png" alt="BERNIGAUD Noé" width="200"/>
-
-We are two students at the University of Côte d'Azur. Together, we form <b>*D.N.A. Production*</b>.
+- `Z`: walk forward
+- `Z + SHIFT`: run forward
+- `S`: walk backward
+- `Q`: rotate left
+- `D`: rotate right
+- `Left Mouse Button`: Attack
+- `SPACE`: jump
+- `SPACE` (while falling): deploy glider
+- `ENTER`: open the in-game chat
   
-<ul>
-  <li>FISSORE Davide was in charge of the menus and UI, the structure of the project, DevOps pipelines, and deployement.</li>
-  <li>BERNIGAUD Noe was taking care of the rust server, the islands creation, the models and their animations, the game physics, gameplay, and sounds.</li>
-</ul>
-
-However, despite our specialization that occured during the project, we always stayed polyvalent and were able to help each other out whenever someone had a block.
-
-A third student, VENTURELLI Antoine, was originally included in the project and participated in the early versions of the game's logic and physics. Unfortunately, he left the computing science field as well as the project during the first iterations.
-  
-***
 
 # History, Details and Difficulties of the Development
 
-***
 
 ## Step 1 : a basic multiplayer game
 
-When we look at what the game look like now, it might come as a surprise to know how it started : a glorified $. We wanted to learn how to program a server, and thought it would be fun to be able to play and test together the game we were developing together. At this stage, we didn't even precisely know what the game would be like, but we wanted to make a server first to better understand how it works and be able to picture how we coud make a multiplayer game.
+When we look at what the game look like now, it might come as a surprise to know how it started: a glorified mini-chat. We wanted to learn how to program a server since it would be fun to be able to play and test the game we were developing together. At this stage, we *didn't* even precisely know what the game would be like, but we wanted to make a server first to better understand how it works and be able to picture how we could make a multiplayer game.
 
-We also wanted to make the server in the Rust language. None of us knew how to program in Rust, but we were interested in learning and it is a very good option for servers as it is a language with a high control, security, and performance.
+We decided to realize the server with the `Rust` programming language. None of us knew how to program in `Rust`, but we were interested to learn more about it due to its growing reputation to be a good  server language with a high control, security and performance.
 
-Once the minichat was done, we made a rudimental BabylonJS world for players to connect to, and modified the server made for the minichat so that it would also receive, store and broadcast player's position.
+Once the mini-chat was done, we made a rudimentary BabylonJS world where players were able to log in with a custom name. This raw server was now able to receive, store and broadcast players' position.
 
 ![First iteration of the game](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/0bfb1e62-22fe-4631-adbc-f004dbad3bab)
 
-Some fun issue we got to experience during our testing was injection attack - we could send special characters, HTML tag, or even code in the minichat to try to crash the server or even make the server interpret it! It was a rather easy fix but something amusing to experiment with nonetheless.
+A **fun issue** we got to experience during our testing was **injection attack**: we could send special characters, HTML tag, or even code in the mini-chat to try to crash the server or even make the server interpret it! It was a rather easy fix but also something amusing to experiment.
 
-Another issue with the server was the update per second. We couldn't ask the server to update all players positions for all clients 60 times per seconds, as it would generate too many request. But, if we settle for lower than that, the other players move in an irregular way. Therefore, we implemented smooth transitions to make the players transition to his new position instead of teleporting to it.
+Another issue with the server was the **update per second**. We couldn't ask the server to update all players positions for all clients $60$ times per seconds, as it would generate too many requests. On the other hand, a lower update ratio would cause make the players move in an irregular way. Therefore, to avoid this unnatural sort of teleportation from the old to the new position, we implemented **smooth transitions**.
+
+MY END CHECKING
 
 An interesting choice for the server we had to debate early on was to go for a dumb server / smart client, or the opposite. The first correspond to how we would develop a solo game, where the client handle the game's logic and the server serves mainly as a place to centralize and broadcast informations. In the case of the smart server / dumb client, it is the server that handles the game logic, and the client's job is to capture inputs from the player and display results from the server. The latter is actually the main way to make multiplayer games as it is much easier to prevent cheats this way. However, we decided not to use it for our case for two reasons :
 - We want to make the server run for free and therefore it needs to work on very low ressources.
