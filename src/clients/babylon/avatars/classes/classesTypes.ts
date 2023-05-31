@@ -1,4 +1,5 @@
 // export const PLAYER_CLASSES_LIST = ["Ranger", "Mage", "Warrior", "Archer", "Assassin", "Healer", "Rogue"] as const;
+// export const PLAYER_CLASSES_LIST = ["Ranger", "Mage", "Warrior"] as const;
 export const PLAYER_CLASSES_LIST = ["Ranger", "Mage", "Warrior"] as const;
 export type PLAYER_CLASSES_TYPE = (typeof PLAYER_CLASSES_LIST)[number];
 
