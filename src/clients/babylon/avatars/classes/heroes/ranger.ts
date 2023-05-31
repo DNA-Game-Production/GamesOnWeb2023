@@ -1,4 +1,4 @@
-import { Axis, BoundingBoxGizmo, Color3, MeshBuilder, Scene } from "babylonjs";
+import { Axis, MeshBuilder, Scene } from "babylonjs";
 import { Vector3 } from "babylonjs/index";
 import { wsClient } from "../../../../connection/connectionClient";
 import { scene } from "../../../main";
@@ -27,10 +27,10 @@ export class Ranger extends Player {
                 hitzone.isVisible = false
 
                 //display hitzone bounding box
-                var bboxGizmo = new BoundingBoxGizmo()
+                /*var bboxGizmo = new BoundingBoxGizmo()
                 bboxGizmo.attachedMesh = hitzone
                 bboxGizmo.setColor(new Color3(1, 0, 0))
-                setTimeout(() => { bboxGizmo.dispose() }, 1000)
+                setTimeout(() => { bboxGizmo.dispose() }, 1000)*/
 
                 hitzone.computeWorldMatrix(true);
 
@@ -38,7 +38,7 @@ export class Ranger extends Player {
                     if (isInHitzone(monster.shape, hitzone)) {
                         monster.take_damage(this.shape.position, 30);
                         //set bounding box color to green if it hits a monster
-                        bboxGizmo.setColor(new Color3(0, 1, 0))
+                        //bboxGizmo.setColor(new Color3(0, 1, 0))
                     }
                 })
 
@@ -46,7 +46,7 @@ export class Ranger extends Player {
                     if (player !== this && isInHitzone(player.shape, hitzone)) {
                         player.send_this_take_damage(30);
                         //set bounding box color to blue if it hits a player
-                        bboxGizmo.setColor(new Color3(0, 0, 1))
+                        //bboxGizmo.setColor(new Color3(0, 0, 1))
                     }
                 })
 
