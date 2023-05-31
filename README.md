@@ -77,7 +77,7 @@ A **fun issue** we got to experience during our testing was **injection attack**
 
 Another issue with the server was the **update per second**. We couldn't ask the server to update all players positions for all clients $60$ times per seconds, as it would generate too many requests. On the other hand, a lower update ratio would cause make the players move in an irregular way. Therefore, to avoid this unnatural sort of teleportation from the old to the new position, we implemented **smooth transitions**.
 
-MY END CHECKING
+DAVIDE END CHECKING
 
 An interesting choice for the server we had to debate early on was to go for a dumb server / smart client, or the opposite. The first correspond to how we would develop a solo game, where the client handle the game's logic and the server serves mainly as a place to centralize and broadcast informations. In the case of the smart server / dumb client, it is the server that handles the game logic, and the client's job is to capture inputs from the player and display results from the server. The latter is actually the main way to make multiplayer games as it is much easier to prevent cheats this way. However, we decided not to use it for our case for two reasons :
 - We want to make the server run for free and therefore it needs to work on very low ressources.
