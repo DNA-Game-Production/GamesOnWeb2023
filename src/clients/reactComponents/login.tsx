@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import { Button, Col, Form, InputGroup } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Row from "react-bootstrap/esm/Row";
 import { PLAYER_CLASSES_LIST, PLAYER_CLASSES_TYPE } from "../babylon/avatars/classes/classesTypes";
 import { ConnectionClient } from "../connection/connectionClient";
@@ -27,6 +27,9 @@ export class ReactLogin extends Component<Props, State> {
   }
 
   render(): ReactNode {
+    let bgOpaque = (b: boolean) => {
+      document.getElementById('bgIsland')!.style.opacity = b ? "0.4" : "1";
+    }
     let rowParam = "justify-content-center px-3 text-white text-center "
     return <div style={{
       // backgroundImage: `url("./img/bg.jpg")`
@@ -36,7 +39,7 @@ export class ReactLogin extends Component<Props, State> {
           Hi curious explorer !
         </Row>
         <Row className={rowParam} id="story">
-          Because of humanity's <pre>greed and avidity,</pre> the planet ran out of resources and society collapsed.<br /> Your are a survivor who took refuge on an archipelago, and have nothing but your will and body to defend yourself.<br /> Your goal is to survive the hostile environment, but be careful: <br /> monsters spawn at nights.
+          Because of humanity's <pre>greed and avidity,</pre> the planet ran out of resources and society collapsed.<br /> Your are a survivor who took refuge on an archipelago, and have nothing but your will and body to defend yourself.<br /> Your goal is to survive the hostile environment, but be careful: <br /> monsters spawn at night.
         </Row>
         <Row className={rowParam + "mb-3"}>  But before : </Row>
 
@@ -85,7 +88,29 @@ export class ReactLogin extends Component<Props, State> {
               }}
             />
           </InputGroup>
-          <Button onClick={this.goToLoadingPanel.bind(this)} id="accessButton" className="btn-sm">Enter</Button>
+          <OverlayTrigger
+            key="top"
+            placement="top"
+            overlay={
+              <Tooltip id={`tooltip-top`}>
+                <ul>
+                  <li> Z : walk forward </li>
+                  <li> Z + SHIFT : run forward </li>
+                  <li> S : walk backward </li>
+                  <li> Q : rotate left </li>
+                  <li> D : rotate right </li>
+                  <li> Left Click : Attack </li>
+                  <li> SPACE : jump </li>
+                  <li> SPACE (while falling) : deploy glider </li>
+                  <li> ENTER : open the in-game chat </li>
+                </ul>
+              </Tooltip>
+            }
+          >
+            <Button id="accessButton" className="btn-sm mainButtons" onMouseEnter={() => bgOpaque(true)}
+              onMouseLeave={() => bgOpaque(false)}>Controls</Button>
+          </OverlayTrigger>
+          <Button onClick={this.goToLoadingPanel.bind(this)} id="accessButton" className="btn-sm mainButtons">Enter</Button>
         </Row>
       </Col>
     </div>

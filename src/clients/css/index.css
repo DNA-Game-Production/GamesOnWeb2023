@@ -109,3 +109,16 @@ pre {
   margin: 0;
   color: rgb(250, 160, 160);
 }
+
+.mainButtons {
+  margin: 2pt
+}
+
+.tooltip .tooltip-inner {
+  width: auto;
+  white-space: normal;
+  max-width: 100%;
+  font-size: 13pt;
+  text-align: left;
+  padding-right: 15pt;
+}
