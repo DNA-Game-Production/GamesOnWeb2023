@@ -99,6 +99,7 @@ export class ReactLogin extends Component<Props, State> {
                   <li> S : walk backward </li>
                   <li> Q : rotate left </li>
                   <li> D : rotate right </li>
+                  <li> Move Mouse: rotate </li>
                   <li> Left Click : Attack </li>
                   <li> SPACE : jump </li>
                   <li> SPACE (while falling) : deploy glider </li>
