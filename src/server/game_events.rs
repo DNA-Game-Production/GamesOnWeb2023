@@ -18,11 +18,11 @@ pub async fn game_events(
         sleep(Duration::from_millis(100)).await;
 
         //update server hour
-        hour = round(hour + 0.1, 1);
-        if hour >= 24.0 {
-            hour = 0.0;
+        hour = round(hour + 0.02, 2);
+        if hour >= 24.00 {
+            hour = 0.00;
         }
-        if hour % 1.0 == 0.0 {
+        if hour % 1.00 == 0.00 {
             println!("hour: {}", hour);
         }
 

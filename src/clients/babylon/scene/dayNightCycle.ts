@@ -2,7 +2,7 @@ import { Animation, AnimationGroup, Color3, Vector3 } from "babylonjs";
 import { scene } from "../main";
 import { hemiLight, light, nightskyMaterial, skyMaterial, water } from "./sceneClient";
 import { hour } from "../others/time";
-export const ratio = 0.65;
+export const ratio = 3.25;
 export var animations: AnimationGroup;
 export function createDayNightCycle(origin: number): AnimationGroup {
 
