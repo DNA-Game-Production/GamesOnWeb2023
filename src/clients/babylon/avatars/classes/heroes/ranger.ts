@@ -53,7 +53,7 @@ export class Ranger extends Player {
 
                 wsClient.plant_list.forEach(plant => {
                     if (isInHitzone(plant.shape, hitzone)) {
-                        this.healthAdd(20)
+                        this.healthAdd(10)
                         plant.take_damage(this.shape.position, 20);
                     }
                 })
