@@ -1,7 +1,8 @@
 import { Axis, MeshBuilder, Scene, Vector3 } from "babylonjs";
 import { wsClient } from "../../../../connection/connectionClient";
 import { scene } from "../../../main";
-import { isInCone, distance, isInHitzone, teleport } from "../../../others/tools";
+import { isInHitzone } from "../../../others/tools";
+import { StoneProjectile } from "../../weapons/projectiles/stoneProjectile";
 import { ModelEnum } from "../models";
 import { Player } from "./player";
 
@@ -65,21 +66,20 @@ export class Ranger extends Player {
     }
 
     attack_1(onlyDisplay = false) {
-        //long cone infligeant un burst de degats et l'etat brulure, poussant les ennemis
-        console.log("mage ", this.name, " casts special attack");
+        //throw a stone
+        console.log("ranger  ", this.name, " casts special attack");
 
-        //ANIMATION (TODO)
+        //ANIMATION
+        this.canMove = false;
+        this.update_status("Punching")
+        setTimeout(() => {
+            this.canMove = true
+            this.update_status("Idle")
+        }, 1000)
 
         //DAMAGE
-        if (!onlyDisplay) {
-            wsClient.monster_list.forEach(monster => {
-                if (isInCone(monster.shape.position, this.shape.position, 10, this.shape.getDirection(Axis.Z), 1, Math.PI / 3)) {
-                    console.log("distance Mage-Monstre: ", distance(this.shape.position, monster.shape.position));
-                    monster.take_damage(this.shape.position, 10, (10 - distance(this.shape.position, monster.shape.position, true)) / 2);
-                    monster.triggerStatus("burn");
-                }
-            })
-        }
+        setTimeout(() => scene.projectileList.push(new StoneProjectile(this, onlyDisplay, {})), 500)
+
     }
 
     take_damage(source: Vector3, amount: number, knockback_power?: number): void {
