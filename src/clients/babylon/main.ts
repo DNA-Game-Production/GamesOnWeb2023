@@ -2,6 +2,7 @@ import { Engine, FollowCamera, Vector3 } from "babylonjs";
 import { username, wsClient } from "../connection/connectionClient";
 import { windowExists } from "../reactComponents/tools";
 import { Player } from "./avatars/classes/heroes/player";
+import { Plant } from "./avatars/classes/monsters/plant";
 
 import { initializeInputListeners, inputEffects } from "./avatars/inputListeners";
 import { adjustCameraPosition } from "./others/tools";
@@ -38,6 +39,13 @@ export var startRenderLoop = function (engine: Engine) {
   })
 
   engine.resize()
+
+  createHealingPlants()
+}
+
+function createHealingPlants() {
+  wsClient.plant_list.set("plant1", new Plant(scene, "plant1", new Vector3(2, scene.getHeightAtPoint(2, 2), 2)))
+  wsClient.plant_list.set("plant2", new Plant(scene, "plant2", new Vector3(4, scene.getHeightAtPoint(4, 4), 4)))
 }
 
 var createDefaultEngine = function () { return new Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, disableWebGL2Support: false }); };
@@ -114,3 +122,5 @@ function setWindowParams() {
     (window as any).scene = scene;
   }
 }
+
+

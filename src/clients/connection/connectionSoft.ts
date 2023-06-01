@@ -2,6 +2,7 @@ import { Scene, Vector3 } from "babylonjs"
 import { AvatarSoft } from "../babylon/avatars/avatarSoft"
 import { PLAYER_CLASSES_TYPE } from "../babylon/avatars/classes/classesTypes"
 import { CharacterStatus } from "../babylon/avatars/classes/intrinsicProp"
+import { Plant } from "../babylon/avatars/classes/monsters/plant"
 
 export const serverMessages = {
     SET_USERNAME: "usernameSetter",
@@ -16,6 +17,7 @@ export const serverMessages = {
     KILL_ALL_NIGHT_MONSTER: "kill_all_night_monster",
     MOVE_MONSTER: "move_monster",
     DAMAGE_MONSTER: "damage_monster",
+    REMOVE_PLANT: "remove_plant",
     DAMAGE_PLAYER: "damage_player",
     HOUR: "hour",
     SPAWN_MONSTER: "spawn_monster",
@@ -39,9 +41,10 @@ export type knockbackContent = {
 export type position = { pos_x: number, pos_y: number, pos_z: number, }
 
 
-export abstract class ConnectionSoft<T extends AvatarSoft, S extends AvatarSoft, R extends Scene> extends WebSocket {
+export abstract class ConnectionSoft<T extends AvatarSoft, S extends AvatarSoft, Q extends AvatarSoft, R extends Scene> extends WebSocket {
     player_list: Map<string, T>
     monster_list: Map<string, S>
+    plant_list: Map<string, Q>
     scene?: R;
 
     constructor(url: string, scene?: R) {
@@ -50,6 +53,7 @@ export abstract class ConnectionSoft<T extends AvatarSoft, S extends AvatarSoft,
         this.onerror = this.onError;
         this.player_list = new Map<string, T>();
         this.monster_list = new Map<string, S>();
+        this.plant_list = new Map<string, Q>();
         this.scene = scene;
     }
 
@@ -131,6 +135,12 @@ export abstract class ConnectionSoft<T extends AvatarSoft, S extends AvatarSoft,
                 }
 
                 //kill_monster: kill the monster with passed username
+                case serverMessages.REMOVE_PLANT: {
+                    this.remove_plant(messageReceived)
+                    break;
+                }
+
+                //kill_monster: kill the monster with passed username
                 case serverMessages.KILL_ALL_NIGHT_MONSTER: {
                     this.kill_all_night_monster(messageReceived)
                     break;
@@ -192,6 +202,13 @@ export abstract class ConnectionSoft<T extends AvatarSoft, S extends AvatarSoft,
         let monster_to_kill = this.monster_list.get(messageReceived.content);
         if (monster_to_kill !== undefined) monster_to_kill.dispose();
         this.monster_list.delete(messageReceived.content);
+    }
+
+    /**
+     * kill_plant: kill the plant with passed username
+     * @param messageReceived 
+     */
+    remove_plant(messageReceived: any) {
     }
 
     /**

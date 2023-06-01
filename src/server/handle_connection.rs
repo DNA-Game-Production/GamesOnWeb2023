@@ -181,6 +181,10 @@ pub async fn handle_connection(
                                 }
                             }
                         }
+                        "remove_plant" => {
+                            shared_messages.lock().unwrap().push(msg.clone());
+                            println!("!!!!!!!!! received remove_plant route")
+                        }
                         "damage_player" => {
                             shared_messages.lock().unwrap().push(msg.clone());
                             println!("!!!!!!!!! received damage_player route")

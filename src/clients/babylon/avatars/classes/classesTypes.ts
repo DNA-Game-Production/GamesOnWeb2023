@@ -3,7 +3,7 @@
 export const PLAYER_CLASSES_LIST = ["Ranger", "Mage", "Warrior"] as const;
 export type PLAYER_CLASSES_TYPE = (typeof PLAYER_CLASSES_LIST)[number];
 
-export const MONSTER_CLASSES_LIST = ["PumpkinMonster", "NightMonster"] as const;
+export const MONSTER_CLASSES_LIST = ["PumpkinMonster", "NightMonster", "Plant"] as const;
 export type MONSTER_CLASSES_TYPE = (typeof MONSTER_CLASSES_LIST)[number];
 
 export const OTHER_CLASSES_LIST = ["Campfire", "Grass", "PineTree", "Cactus", "Glider"] as const;

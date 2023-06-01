@@ -7,7 +7,7 @@ import { ConnectionSoft, knockbackContent, receiveContent, serverMessages } from
 
 export let ws: ConnectionServer;
 
-export class ConnectionServer extends ConnectionSoft<AvatarFictive, AvatarFictive, SceneFictive>{
+export class ConnectionServer extends ConnectionSoft<AvatarFictive, AvatarFictive, AvatarFictive, SceneFictive>{
   constructor(scene: SceneFictive, port: string) {
     super("ws://127.0.0.1:" + port, scene)
   }

@@ -32,6 +32,8 @@ export class ModelEnum {
     static Ranger = new ModelEnum(intrinsicProperties.Ranger);
     static NightMonster = new ModelEnum(intrinsicProperties.NightMonster)
 
+    static Plant = new ModelEnum(intrinsicProperties.Plant)
+
     rootMesh: Mesh | undefined
     private container: AssetContainer = new AssetContainer();
 
@@ -111,6 +113,10 @@ export class ModelEnum {
                         m.checkCollisions = false;
                     });
                     animations[0].stop();
+                    break;
+
+                case "Plant":
+
                     break;
 
                 case "Campfire":
@@ -193,7 +199,7 @@ export class ModelEnum {
             this.Ranger,
             //this.Mage, this.Warrior, this.Campfire, 
             // this.Assassin, this.Archer, this.Healer, this.PumpkinMonster,  
-            this.NightMonster, this.Grass, this.PineTree, this.Cactus, this.Glider
+            this.NightMonster, this.Grass, this.PineTree, this.Cactus, this.Glider, this.Plant
         ];
         ModelEnum.addLoadingTask(allModels.length)
         allModels.forEach(m => m.createModel(scene));

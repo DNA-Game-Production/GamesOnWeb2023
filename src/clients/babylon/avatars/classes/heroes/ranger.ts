@@ -51,12 +51,12 @@ export class Ranger extends Player {
                     }
                 })
 
-                // wsClient.plant_list.forEach(plant => {
-                //     if (isInHitzone(plant.shape, hitzone)) {
-                //         this.healthAdd(20)
-                //         plant.take_damage(this.shape.position, 20);
-                //     }
-                // })
+                wsClient.plant_list.forEach(plant => {
+                    if (isInHitzone(plant.shape, hitzone)) {
+                        this.healthAdd(20)
+                        plant.take_damage(this.shape.position, 20);
+                    }
+                })
 
                 hitzone.dispose()
             }
