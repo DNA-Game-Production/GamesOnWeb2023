@@ -24,6 +24,7 @@ export class ReactLogin extends Component<Props, State> {
   goToLoadingPanel() {
     var audio = new Audio('/audio/track1-day.mp3');
     audio.loop = true;
+    audio.volume = 0.1;
     audio.play();
     ConnectionClient.setGlobalWebSocket(this.state.class, this.state.name)
     this.props.setSection("LOADING")
