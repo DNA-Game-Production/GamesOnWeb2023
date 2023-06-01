@@ -35,17 +35,23 @@ export abstract class Player extends Avatar {
             if (this === sphere1) {
                 this.update_status("Dying", false, true)
                 setTimeout(() => { if (scene) scene.triggerPostProcessAnimation("fadin", scene.fadinVignetteAnimation) }, 3000)
-                setTimeout(() => { if (this) this.respawn() }, 8000)
+                setTimeout(() => { if (this) this.spawn() }, 8000)
             }
         }
         return hs
     }
 
-    respawn() {
+    spawn() {
         this.healthSet(this.maxHealth)
         this.takeHits = true
-        let spawnPosHeight = scene.getHeightAtPoint(0, 0)
-        this.shape.setAbsolutePosition(new Vector3(0, spawnPosHeight ? spawnPosHeight + 2 : 2, 0))
+        const xPos = 0 + Math.random() * 20
+        const zPos = 0 + Math.random() * 20
+        let spawnPosHeight = scene.getHeightAtPoint(xPos, zPos)
+        this.shape.setAbsolutePosition(
+            new Vector3(
+                xPos,
+                spawnPosHeight ? spawnPosHeight + 2 : 2,
+                zPos))
         this.update_status("Idle", true, true)
     }
 

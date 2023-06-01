@@ -9,14 +9,7 @@ export class Ranger extends Player {
 
     constructor(scene: Scene, avatar_username: string) {
         super(scene, avatar_username, ModelEnum.Ranger.intrinsicParameterMesh)
-        this.update_status("Idle")
-        teleport(
-            this,
-            new Vector3(
-                this.shape.position.x + Math.random() * 20,
-                this.shape.position.y,
-                this.shape.position.z + Math.random() * 20,
-            ))
+        this.spawn()
     }
 
     attack_0(onlyDisplay = false) {
