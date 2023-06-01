@@ -134,7 +134,7 @@ export const intrinsicProperties1: Record<ALL_CLASSES, intrinsicModelPropertiesO
     fileExtension: "glb",
     healthYAbove: 2,
     textYAbove: 2.3,
-    health: 90,
+    health: 60,
     walkSpeed: 0.15,
     animations: {
       Walking_bw: 10, Walking_fw: 9, Running: 7,
@@ -151,7 +151,7 @@ export const intrinsicProperties1: Record<ALL_CLASSES, intrinsicModelPropertiesO
     width: 2,
     healthYAbove: 2.8,
     textYAbove: 3.1,
-    health: 100,
+    health: 30,
     walkSpeed: 0.2,
     animations: {
       Running: 3, Falling: 1, Punching: 2, Dying: 0,

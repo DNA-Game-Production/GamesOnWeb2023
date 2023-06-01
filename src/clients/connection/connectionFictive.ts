@@ -60,7 +60,7 @@ export class ConnectionServer extends ConnectionSoft<AvatarFictive, AvatarFictiv
         content: ""
       }))
     }
-    if (hour === "22") {
+    if (hour === "22" || hour === "1" || hour === "4") {
       generate_zombie_wave()
     }
     // console.log(hour);

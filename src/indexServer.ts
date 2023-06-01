@@ -118,19 +118,19 @@ export function generate_zombie_wave() {
 
   for (var player of ws.player_list.values()) {
 
-    for (var i = 0; i < 3; i++) {
-      var zombie_x = Math.random() > 0.5 ? player.shape.position.x + 5 + Math.random() * 10 : player.shape.position.x - 5 - Math.random() * 10
-      var zombie_z = Math.random() > 0.5 ? player.shape.position.z + 5 + Math.random() * 10 : player.shape.position.z - 5 - Math.random() * 10
-      var zombie_y = 0
-      var height = scene.getHeightAtPoint(zombie_x, zombie_z)
-      if (!height) break;
-      if (height) zombie_y = height + 3
-      spawn_zombie({
-        pos_x: zombie_x,
-        pos_y: zombie_y,
-        pos_z: zombie_z
-      });
-    }
+    //for (var i = 0; i < 3; i++) {
+    var zombie_x = Math.random() > 0.5 ? player.shape.position.x + 5 + Math.random() * 10 : player.shape.position.x - 5 - Math.random() * 10
+    var zombie_z = Math.random() > 0.5 ? player.shape.position.z + 5 + Math.random() * 10 : player.shape.position.z - 5 - Math.random() * 10
+    var zombie_y = 0
+    var height = scene.getHeightAtPoint(zombie_x, zombie_z)
+    if (!height) break;
+    if (height) zombie_y = height + 3
+    spawn_zombie({
+      pos_x: zombie_x,
+      pos_y: zombie_y,
+      pos_z: zombie_z
+    });
+    //}
   }
 }
 
