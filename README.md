@@ -1,5 +1,8 @@
 
 # <p align="center">[Multiplayer 3D Game](https://DNA-Game-Production.github.io/GamesOnWeb2023/) <font size="4">with [*Babylon.js*](https://www.babylonjs.com/)</font><p>
+  
+  # [Videos](https://youtu.be/-pvAvi801i4)
+  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-pvAvi801i4/0.jpg)](https://www.youtube.com/watch?v=-pvAvi801i4)
 
 - [Multiplayer 3D Game with *Babylon.js*](#multiplayer-3d-game-with-babylonjs)
 - [Videos](#videos)
@@ -20,8 +23,6 @@
 - [Perspectives](#perspectives)
 - [Launch the Game Locally](#launch-the-game-locally)
 - [Used Libraries/Frameworks](#used-librariesframeworks)
-  
-# [Videos](https://www.youtube.com/@d.n.agameproduction6032)
 
 
 # The team
