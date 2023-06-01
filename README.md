@@ -196,7 +196,7 @@ For the development of the game we used the following libraries/frameworks
 - **GitHub workflow** to:
   - build the dockerized version of the server and push it on **Heroku**
   - compile the sources of the client and push them on a dedicated branch (called *branch-client*) of github
-- **Github action** to automatically push *branch-client* on *github.io*
+- **Github pages** to automatically push *branch-client* on *github.io*
   
 Programming languages:
 
