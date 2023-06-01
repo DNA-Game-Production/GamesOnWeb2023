@@ -1,8 +1,7 @@
-import { Axis, MeshBuilder, Scene } from "babylonjs";
-import { Vector3 } from "babylonjs/index";
+import { Axis, MeshBuilder, Scene, Vector3 } from "babylonjs";
 import { wsClient } from "../../../../connection/connectionClient";
 import { scene } from "../../../main";
-import { isInCone, distance, isInHitzone } from "../../../others/tools";
+import { isInCone, distance, isInHitzone, teleport } from "../../../others/tools";
 import { ModelEnum } from "../models";
 import { Player } from "./player";
 
@@ -11,6 +10,13 @@ export class Ranger extends Player {
     constructor(scene: Scene, avatar_username: string) {
         super(scene, avatar_username, ModelEnum.Ranger.intrinsicParameterMesh)
         this.update_status("Idle")
+        teleport(
+            this,
+            new Vector3(
+                this.shape.position.x + Math.random() * 20,
+                this.shape.position.y,
+                this.shape.position.z + Math.random() * 20,
+            ))
     }
 
     attack_0(onlyDisplay = false) {
