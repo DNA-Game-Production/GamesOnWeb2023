@@ -2,9 +2,7 @@
 # <p align="center">[Multiplayer 3D Game](https://DNA-Game-Production.github.io/GamesOnWeb2023/) <font size="4">with [*Babylon.js*](https://www.babylonjs.com/)</font><p>
   
   # [Videos](https://youtu.be/-pvAvi801i4)
-
   [![Video](https://i.imgur.com/kxRPBJ0.png)](https://youtu.be/-pvAvi801i4)
-  [![Everything Is AWESOME](http://i.imgur.com/Ot5DWAW.png)](https://youtu.be/StTqXEQ2l-Y?t=35s "Everything Is AWESOME")
 
 - [Multiplayer 3D Game with *Babylon.js*](#multiplayer-3d-game-with-babylonjs)
 - [Videos](#videos)
