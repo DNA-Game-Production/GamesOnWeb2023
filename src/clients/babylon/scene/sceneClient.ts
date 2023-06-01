@@ -271,6 +271,8 @@ export class SceneClient extends SceneSoft {
 
             let c1m = Mesh.MergeMeshes([c1]);
             let c2m = Mesh.MergeMeshes([c2]);
+            c1m?.setAbsolutePosition(new Vector3(0, -100, -100))
+            c2m?.setAbsolutePosition(new Vector3(0, -100, -100))
 
             c1m?.simplify(
                 [
@@ -361,7 +363,9 @@ export class SceneClient extends SceneSoft {
         if (model !== undefined) {
             let childs = model.getChildMeshes() as Mesh[];
 
+            //THIS LINE INDUCE UNWANTED SPAWN
             let mergedmodel = Mesh.MergeMeshes(childs);
+            mergedmodel?.setAbsolutePosition(new Vector3(0, -100, -100))
 
             mergedmodel?.simplify(
                 [

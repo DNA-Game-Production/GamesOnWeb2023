@@ -7,7 +7,7 @@ import { ModelEnum } from "../classes/models";
 export class Glider {
 
     gliderRay: Ray
-    gliderInstance: InstancedMesh | undefined
+    //gliderInstance: InstancedMesh | undefined
     mergedmodel = Mesh.MergeMeshes((ModelEnum.Glider.rootMesh?.clone() as Mesh).getChildMeshes() as Mesh[]) as Mesh;
     player: Player
     trailHandlers: TrailHandler[]
@@ -15,6 +15,11 @@ export class Glider {
     constructor(player: Player) {
         this.player = player
         this.gliderRay = new Ray(this.player.shape.position, new Vector3(0, -1, 0), 6);
+
+        this.mergedmodel.setAbsolutePosition(new Vector3(0, -100, -100))
+        this.mergedmodel.isPickable = false
+        this.mergedmodel.checkCollisions = false
+        this.mergedmodel.computeWorldMatrix(true);
 
         //SET UP TRAIL MATERIAL
         let trailMaterial = new StandardMaterial("sourceMat", scene)
@@ -58,23 +63,19 @@ export class Glider {
     deployGlider(on: boolean) {
         if (on) {
             //SPAWN GLIDER MODEL
-            this.gliderInstance = this.mergedmodel.createInstance("glider_" + this.player.name)
-            this.gliderInstance.isPickable = false
-            this.gliderInstance.checkCollisions = false
-            this.gliderInstance.setDirection(this.player.shape.getDirection(Axis.Z))
-            this.gliderInstance.position = this.player.shape.position.add(new Vector3(0, 1.45, 0)).subtract(this.player.shape.getDirection(Axis.Z).normalize().scale(0.4))
-            this.gliderInstance.computeWorldMatrix(true);
-            this.player.shape.addChild(this.gliderInstance)
+            this.mergedmodel.setDirection(this.player.shape.getDirection(Axis.Z))
+            this.mergedmodel.position = this.player.shape.position.add(new Vector3(0, 1.45, 0)).subtract(this.player.shape.getDirection(Axis.Z).normalize().scale(0.4))
+            this.mergedmodel.computeWorldMatrix(true);
+            this.player.shape.addChild(this.mergedmodel)
             //DISPLAY TRAILS
-            this.trailHandlers.forEach(trailHandler => trailHandler.switchTrailOn(this.gliderInstance))
+            this.trailHandlers.forEach(trailHandler => trailHandler.switchTrailOn(this.mergedmodel))
         } else {
-            if (this.gliderInstance) {
-                //REMOVE GLIDER MODEL AND TRAILS
-                this.trailHandlers.forEach(trailHandler => trailHandler.switchTrailOff())
-                this.gliderInstance.dispose()
-            }
+            this.trailHandlers.forEach(trailHandler => trailHandler.switchTrailOff())
+            this.player.shape.removeChild(this.mergedmodel)
+            this.mergedmodel.setAbsolutePosition(new Vector3(0, -100, -100))
         }
     }
+
 }
 
 class TrailHandler {
@@ -92,7 +93,7 @@ class TrailHandler {
         this.offset = offset
     }
 
-    switchTrailOn(parent: InstancedMesh | undefined) {
+    switchTrailOn(parent: Mesh) {
 
         this.trailEmitter = MeshBuilder.CreateBox("airstreak", { size: 0.05 });
         if (parent) this.trailEmitter.parent = parent

@@ -76,6 +76,7 @@ export class ModelEnum {
 
                     //Merging of all twig of grass in an unique mesh
                     model = Mesh.MergeMeshes(meshes, false);
+                    model?.setAbsolutePosition(new Vector3(0, -100, -100))
                     if (model) {
                         this.rootMesh = model;
                         scene.setUpForGrass();
@@ -189,9 +190,10 @@ export class ModelEnum {
 
     static createAllModels(scene: SceneClient) {
         var allModels = [
-            this.Ranger, //this.Mage, this.Warrior, 
-            // this.Assassin, this.Archer, this.Healer, 
-            this.PumpkinMonster, this.NightMonster, this.Grass, this.Campfire, this.PineTree, this.Cactus, this.Glider
+            this.Ranger,
+            //this.Mage, this.Warrior, this.Campfire, 
+            // this.Assassin, this.Archer, this.Healer, this.PumpkinMonster,  
+            this.NightMonster, this.Grass, this.PineTree, this.Cactus, this.Glider
         ];
         ModelEnum.addLoadingTask(allModels.length)
         allModels.forEach(m => m.createModel(scene));
