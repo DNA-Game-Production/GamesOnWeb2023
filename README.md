@@ -79,7 +79,7 @@ When we look at what the game look like now, it might come as a surprise to know
 
 We decided to realize the server with the `Rust` programming language. None of us knew how to program in `Rust`, but we were interested to learn more about it due to its growing reputation to be a good  server language with a high control, security and performance.
 
-Once the mini-chat was done, we made a rudimentary BabylonJS world where players were able to log in with a custom name. This raw server was now able to receive, store and broadcast players' position.
+Once the mini-chat was done, we made a rudimentary BabylonJS world where players were able to log in with a custom name. This frontend would connect to the server, which was now able to receive, store and broadcast players' position.
 
 ![First iteration of the game](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/0bfb1e62-22fe-4631-adbc-f004dbad3bab)
 
@@ -123,11 +123,12 @@ We created the water out of simple plan to which we gave the very convenient Wat
 
 ![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/4ae11aa9-a557-47b4-a678-1baec8bf52f0)
 
-Finally, we wanted to have a **Day/Night cycle** that would make the landscape more varied and would rhythm the gameplay. We instantiated animation on the lightning and sky, which contains a lot of parameters in its material to simulate a real sky. While it was quite a long job to animate all the different needed details for the light and color of the sky wrt different hours of the day, it was well worth it as we feel it was the final touch that finally brought the "wow" we were looking for.
+Finally, we wanted to have a **Day/Night cycle** that would make the landscape more varied and would rhythm the gameplay. We instantiated animation on the lightning and sky, which contains a lot of parameters in its material to simulate a real sky. While it was quite a long job to animate all the different needed details for the lights and colors of the sky for different hours of the day, it was well worth it as we feel it was the final touch that finally brought the "wow" we were looking for.
 
 ![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/0b1927f9-441e-4366-83c1-6015f9c6de2b)
 ![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/177fe3b3-f874-4571-a624-f28e2264d132)
 ![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/e562dfd8-e4c2-4443-9f2e-f5862f434972)
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/45287297-3028-4939-a4ea-cb2d4e1a32b6)
 
 ## Step 5 : Camera movement
 
@@ -184,7 +185,7 @@ It is also important in a game to have a pleasing soundscape so that it does not
 
 The game at this stage was working as we wanted but it lacked some meaningful activity to do during the day and a reason to explore the world. Therefore, we added helpful fruit plants that could be hit by the player so that they gain back some of their lost health. The plant then is destroyed and will reappear only 100 second later. Not only this make it very useful to explore as you get to know the different fruit plant spots, it also introduces some drawback to always sticking as a groupe of player and could encourage some hostile behavior between players as the resource is quite limited, which in our opinion makes the game more interesting as there are incentives both to cooperate or to defend your ground against others.
 
-![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/ba6e360c-67f7-4557-ab01-0f14800bc2ff)
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/deeb172b-cde6-45f3-b4ce-dcbaedef5f5f)
 
 Finally, what is a third person action game without a glider? A lot of the major game releases that looks anything alike our game have a glider in it, and for good reasons - it's just that fun! This is one of the final touches that gave a little extra to the game, and with the work on the scenery, a glider felt like the perfect addition to get a better view while having a funnier way to move around. Moreover, it was a rather easy addition as we just needed to give the player a constant vertical force and prevent the gravity to accelerate them while they glide. We added a laser below the player to check if they have enough space to glide before allowing them to do so, so go jump from the tallest cliff you can find and spring your wings!
 
