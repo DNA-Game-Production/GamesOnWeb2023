@@ -20,12 +20,8 @@ export var startRenderLoop = function (engine: Engine) {
 
   setInterval(() => {
     console.log(engine.getFps().toFixed() + " fps")
-    //console.log("state: " + sphere1?.getStatus());
+    console.log("state: " + sphere1?.shape.position);
   }, 2000)
-
-  setInterval(() => {
-    console.log("state: " + sphere1?.getStatus());
-  }, 200)
 
   engine.runRenderLoop(function () {
     if (scene && scene.activeCamera) {
@@ -45,7 +41,13 @@ export var startRenderLoop = function (engine: Engine) {
 
 function createHealingPlants() {
   wsClient.plant_list.set("plant1", new Plant(scene, "plant1", new Vector3(2, scene.getHeightAtPoint(2, 2), 2)))
-  wsClient.plant_list.set("plant2", new Plant(scene, "plant2", new Vector3(4, scene.getHeightAtPoint(4, 4), 4)))
+  wsClient.plant_list.set("plant2", new Plant(scene, "plant2", new Vector3(32, scene.getHeightAtPoint(32, 18), 18)))
+  wsClient.plant_list.set("plant3", new Plant(scene, "plant3", new Vector3(62, scene.getHeightAtPoint(62, -173), -173)))
+  wsClient.plant_list.set("plant4", new Plant(scene, "plant4", new Vector3(10.5, scene.getHeightAtPoint(10.5, -190.3), -190.3)))
+  wsClient.plant_list.set("plant5", new Plant(scene, "plant5", new Vector3(336, scene.getHeightAtPoint(336, 129), 129)))
+  wsClient.plant_list.set("plant6", new Plant(scene, "plant6", new Vector3(343, scene.getHeightAtPoint(343, 70), 70)))
+  wsClient.plant_list.set("plant7", new Plant(scene, "plant7", new Vector3(176, scene.getHeightAtPoint(176, 4), 4)))
+  wsClient.plant_list.set("plant8", new Plant(scene, "plant8", new Vector3(145, scene.getHeightAtPoint(145, 491), 491)))
 }
 
 var createDefaultEngine = function () { return new Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, disableWebGL2Support: false }); };
