@@ -56,7 +56,7 @@ This is a multiplayer game, so you might not be the only survivor on the archipe
 - `S`: walk backward
 - `Q`: rotate left
 - `D`: rotate right
-- `move mouse`: rotate
+- `Move Mouse`: rotate
 - `Left Mouse Button`: Attack
 - `SPACE`: jump
 - `SPACE` (while falling): deploy glider
