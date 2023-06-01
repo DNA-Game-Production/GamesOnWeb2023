@@ -80,20 +80,20 @@ export var createLabel = function (text: string, mesh: Avatar, scene: Scene, p?:
 }
 
 
-export function createWall(scene: Scene) {
-    let wall = MeshBuilder.CreateBox("wall", { height: 50, width: 2, depth: 0.2 }, scene);
-    wall.position = new Vector3(10, 1, -10)
-    wall.rotate(Axis.X, Math.PI / 2.5)
-    wall.checkCollisions = true;
+// export function createWall(scene: Scene) {
+//     let wall = MeshBuilder.CreateBox("wall", { height: 50, width: 2, depth: 0.2 }, scene);
+//     wall.position = new Vector3(10, 1, -10)
+//     wall.rotate(Axis.X, Math.PI / 2.5)
+//     wall.checkCollisions = true;
 
-    var wallMaterial = new StandardMaterial("wallMat", scene);
+//     var wallMaterial = new StandardMaterial("wallMat", scene);
 
-    wallMaterial.diffuseColor = new Color3(0.6, 0.165, 0.11);
-    wall.material = wallMaterial;
+//     wallMaterial.diffuseColor = new Color3(0.6, 0.165, 0.11);
+//     wall.material = wallMaterial;
 
-    wall.receiveShadows = true;
-    return wall
-}
+//     wall.receiveShadows = true;
+//     return wall
+// }
 
 export function createBasicShape(avatar_username: String, scene: Scene, p: intrinsicModelProperties) {
     let model = MeshBuilder.CreateCylinder(avatar_username.toString(), { diameter: p.width ? p.width : 1, height: p.height ? p.height : 2 }, scene);
