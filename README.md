@@ -111,15 +111,15 @@ Something else we had fun experimenting with was fall damage. The simplest imple
 
 ## Step 4 : Creation of the World
 
-Once we started to create our world map, we wanted to realize *stunning* map: one of the most important goal we want to achieve. The execution of our game on a browser limits limit a lot the graphical performances then more classic games. Despite this, we still wanted to get a **wow** out of the player when they load the game.
+Once we started to create our world map, we wanted to realize *stunning* map: one of the most important goal we want to achieve. The execution of our game on a browser limits a lot the graphical performances in comparison to more classic games. Despite this, we still wanted to get a **wow** out of the player when they load the game.
 
-All $4$ islands were created by ourselves through blender, a 3D modeling software. None of us was experienced with it and it has a quite steep learning tough, so this step took a lot of time. Moreover, we had to endure very long loading times as generating high-quality terrain or textures could take from tens of minutes to hours. Therefore, we had to really find the good settings before testing.
+All $4$ islands were created by ourselves through `blender`, a 3D modeling software. None of us was experienced with it and it has a quite steep learning curve, so this step took a lot of time. Moreover, we had to endure very long loading times as generating high-quality terrain or textures could take from tens of minutes to hours. Therefore, we had to really find the good settings before testing.
 
-After a lot of experimentation, we managed to create satisfying terrain models using the *ANT* (Another Noise Tool) landscape extension on Blender. By tuning the noise's parameters, we could create the different biomes' height map. This tool also allowed us to texture the terrain. Despite this, the forest terrain results were not good enough, so for this specific case we made the texture of the terrain by using a shader assigning textures based on rules, in our case the inclination of the terrain.
+After a lot of experimentation, we managed to create satisfying terrain models using the *ANT* (Another Noise Tool) landscape extension on Blender. By tuning the noise's parameters, we could create the different biomes' height map. This tool also allowed us to texture the terrain. Despite this, the forest terrain results were not good enough, so for this specific case we made the texture of the terrain by using a shader assigning textures based on rules, in our case the inclination of the terrain. We also made a lot of effort in optimizing the complexity of our terrains' models.
 
 ![mossyIslandBlender](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/e073998c-b3ed-4cad-95bd-d7e9b23ad237)
 
-We created the water out of simple plan to which we gave the very convenient WaterMaterial found in the BabylonJS library with parameters adjusted to our needs. We also implemented a tide that rhythm the accessibility of the different islands. When under the water plan, the player enter a swimming state and can drown if they stay for too long. Under the water plan, a sand ground is there, with varying heights to create path between the islands depending on the tide.
+We created the water out of simple plan to which we gave the very convenient WaterMaterial found in the BabylonJS library with parameters adjusted to our needs. We also implemented a tide that rhythm the accessibility of the different islands. When under the water plan, the player enter a swimming state and can drown if they stay for too long. Under the water plan, a sand ground is there, with varying heights to create paths between the islands depending on the tide.
 
 ![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/4ae11aa9-a557-47b4-a678-1baec8bf52f0)
 
@@ -132,7 +132,7 @@ Finally, we wanted to have a **Day/Night cycle** that would make the landscape m
 
 ## Step 5 : Camera movement
 
-BabylonJS offers some interesting options for cameras, however our specific needs called for addition onto them. For a third person game, a FollowCamera is the best choice, but we had problems where the camera could go under/behind the ground when the player would turn his back on a slope. Our islands having quite a lot of relief, we had to modify the camera - we added a front and back laser to the camera to know its position wrt to the ground. This way, the camera will get closer to the player when needed to avoid going under the ground, all the while trying to position itself as close to its normal distance to the player at all time. The player also becomes semi-transparent if the camera gets too close, which is a classic technique used in games to avoid the player obstructing the view when the camera gets too close.
+BabylonJS offers some interesting options for cameras, however our specific needs called for addition onto them. For a third person game, a FollowCamera is the best choice, but we had problems where the camera could go under/behind the ground when the player would turn his back on a slope. Our islands having quite a lot of relief, we had to modify the camera - we added a front and back laser to the camera to know its position in relation to the ground. This way, the camera will get closer to the player when needed to avoid going under the ground, all the while trying to position itself as close to its normal distance to the player at all time. The player also becomes semi-transparent if the camera gets too close, which is a classic technique used in games to avoid the player obstructing the view when the camera gets too close.
 
 
 ## Step 6 : Performance issues
