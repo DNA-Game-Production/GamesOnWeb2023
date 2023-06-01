@@ -116,6 +116,8 @@ All 4 islands were created by ourselves user blender, a 3D modeling logiciel. No
 
 After a lot of experimentation, we managed to create satisfying terrain models using the ANT (Another Noise Tool) landscape extension on Blender. By tunning the noise's parameters, we can create the different biomes' height map. This tool also allow to texture the terrain, but for the forest terrain the results were not good enough, so for this specific case we made the texture of the terrain by using a shader than asign textures based on rules, in our case the inclination of the terrain.
 
+![mossyIslandBlender](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/e073998c-b3ed-4cad-95bd-d7e9b23ad237)
+
 We created the water out of simple plan to which we gave the very convenient WaterMaterial found in the BabylonJS library with parameters adjusted to our needs. We also implemented a tide that rythm the accessibility of the different islands. When under the water plan, the player enter a swimming state and can drown if they stay for too long. Under the water plan, a sand ground is there, with varying heights to create path between the islands depending on the tide.
 
 We also wanted to have a Day/Night cycle that would make the landscape more varied and would rythm the gameplay. We instantiated animation on the lightning and sky, which contains a lot of parameters in its material to emulate the parameters changing the look of a real sky, to make the cycle as good-looking as we could. While it was quite a long job to animate all the different needed parameters for the different hours of the day, it was well worth it as we feel it was the final touch that finally brought the "wow" we were looking for.
@@ -163,6 +165,8 @@ The process of building the frontend code, building the backend code, creating t
 With the biggest stepping stone now done, it was time to enter the finalization stage of the game. We had a lot of small bugs to fix and improvements to make so that our game become more of a finalized project and less of a early concept.
 
 First of all we had to use proper character models and animate them. We tried a lot of models but animating them was difficult and time consuming, but after some research we stubbled onto [Mixamo](https://www.mixamo.com/#/), a free website that allows us to download models and attahc animation to them. Using Blender once again, we were able to combine many animations into a models. Once imported, we still had a lot of issues regarding the way to import models, but after working on a refactor we manage to get everything to work as we wanted. All characters now have a variable representing their state, such as "walking", "dying", "swimming of "glinding". The model's animation are declenched according to a state machine using these state and their transitions. We also enabled blending for our models' animation so that we get smooth transitions between all animations.
+
+![characterAnim](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/0a91746d-b15c-4fd5-9e01-a733b772ba6a)
 
 We also used postPrecessing to add a vignette when the player is under water to make the player really feel like he's under water. We used the same technique combined with a fading animation to create a red effect on the camera when the player takes damage.
 
