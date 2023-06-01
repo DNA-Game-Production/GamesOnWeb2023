@@ -137,7 +137,7 @@ export const intrinsicProperties1: Record<ALL_CLASSES, intrinsicModelPropertiesO
     health: 60,
     walkSpeed: 0.15,
     animations: {
-      Walking_bw: 10, Walking_fw: 11, Throw: 9, Running: 7,
+      Walking_bw: 11, Walking_fw: 10, Throw: 9, Running: 7,
       Falling: 1, Idle: 4, Jumping: 1, Punching: 6,
       Swimming: 8, Dying: 0, TakingHit: 2,
       Gliding: 3,
