@@ -51,6 +51,13 @@ export class Ranger extends Player {
                     }
                 })
 
+                // wsClient.plant_list.forEach(plant => {
+                //     if (isInHitzone(plant.shape, hitzone)) {
+                //         this.healthAdd(20)
+                //         plant.take_damage(this.shape.position, 20);
+                //     }
+                // })
+
                 hitzone.dispose()
             }
         },
@@ -71,14 +78,14 @@ export class Ranger extends Player {
 
         //ANIMATION
         this.canMove = false;
-        this.update_status("Punching")
+        this.update_status("Throw")
         setTimeout(() => {
             this.canMove = true
             this.update_status("Idle")
-        }, 1000)
+        }, 2000)
 
         //DAMAGE
-        setTimeout(() => scene.projectileList.push(new StoneProjectile(this, onlyDisplay, {})), 500)
+        setTimeout(() => scene.projectileList.push(new StoneProjectile(this, onlyDisplay, {})), 1200)
 
     }
 

@@ -225,7 +225,7 @@ export function inputEffects(player: Player) {
 
     //jump
     if (inputStates.jump) {
-        if (player.canJump && player.getStatus() !== "Punching" && player.getStatus() !== "Swimming" && !player.isInAir()) {
+        if (player.canJump && player.getStatus() !== "Punching" && player.getStatus() !== "Throw" && player.getStatus() !== "Swimming" && !player.isInAir()) {
             player.isJumping = true;
             player.update_status("Jumping")
             player.canJump = false
