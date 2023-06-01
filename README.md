@@ -3,7 +3,8 @@
   
   # [Videos](https://youtu.be/-pvAvi801i4)
 
-  [![Video](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/cb1b38d8-3a75-4033-bf40-c9f95df0a57b)](https://www.youtube.com/watch?v=-pvAvi801i4)
+  [![Video](https://i.imgur.com/kxRPBJ0.png)](https://youtu.be/-pvAvi801i4)
+  [![Everything Is AWESOME](http://i.imgur.com/Ot5DWAW.png)](https://youtu.be/StTqXEQ2l-Y?t=35s "Everything Is AWESOME")
 
 - [Multiplayer 3D Game with *Babylon.js*](#multiplayer-3d-game-with-babylonjs)
 - [Videos](#videos)
