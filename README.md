@@ -8,17 +8,18 @@
 - [How to play the game](#how-to-play-the-game)
   - [Controls](#controls)
 - [History, Details and Difficulties of the Development](#history-details-and-difficulties-of-the-development)
-  - [Step 1 : a basic multiplayer game](#step-1--a-basic-multiplayer-game)
+  - [Step 1 : A basic multiplayer game](#step-1--a-basic-multiplayer-game)
   - [Step 2 : Setting our Goals](#step-2--setting-our-goals)
   - [Step 3 : Physics](#step-3--physics)
   - [Step 4 : Creation of the World](#step-4--creation-of-the-world)
   - [Step 5 : Camera movement](#step-5--camera-movement)
-  - [Step 6 : performance issues](#step-6--performance-issues)
-  - [Step 7 : the monsters](#step-7--the-monsters)
+  - [Step 6 : Performance issues](#step-6--performance-issues)
+  - [Step 7 : The monsters](#step-7--the-monsters)
   - [Step 8 : Deployment](#step-8--deployment)
-  - [Step 9 : finalization](#step-9--finalization)
+  - [Step 9 : Finalization](#step-9--finalization)
 - [Perspectives](#perspectives)
 - [Launch the Game Locally](#launch-the-game-locally)
+- [Used Libraries/Frameworks](#used-librariesframeworks)
   
 # [Videos](https://www.youtube.com/@d.n.agameproduction6032)
 
@@ -58,7 +59,8 @@ This is a multiplayer game, so you might not be the only survivor on the archipe
 - `Q`: rotate left
 - `D`: rotate right
 - `Move Mouse`: rotate
-- `Left Mouse Button`: Attack
+- `Left Mouse Click`: Attack
+- `Right Mouse Click`: Throw attack
 - `SPACE`: jump
 - `SPACE` (while falling): deploy glider
 - `ENTER`: open the in-game chat
@@ -67,7 +69,7 @@ This is a multiplayer game, so you might not be the only survivor on the archipe
 # History, Details and Difficulties of the Development
 
 
-## Step 1 : a basic multiplayer game
+## Step 1 : A basic multiplayer game
 
 When we look at what the game look like now, it might come as a surprise to know how it started: a glorified mini-chat. We wanted to learn how to program a server since it would be fun to be able to play and test the game we were developing together. At this stage, we *didn't* even precisely know what the game would be like, but we wanted to make a server first to better understand how it works and be able to picture how we could make a multiplayer game.
 
@@ -121,7 +123,7 @@ Finally, we wanted to have a **Day/Night cycle** that would make the landscape m
 BabylonJS offers some interesting options for cameras, however our specific needs called for addition onto them. For a third person game, a FollowCamera is the best choice, but we had problems where the camera could go under/behind the ground when the player would turn his back on a slope. Our islands having quite a lot of relief, we had to modify the camera - we added a front and back laser to the camera to know its position wrt to the ground. This way, the camera will get closer to the player when needed to avoid going under the ground, all the while trying to position itself as close to its normal distance to the player at all time. The player also becomes semi-transparent if the camera gets too close, which is a classic technique used in games to avoid the player obstructing the view when the camera gets too close.
 
 
-## Step 6 : performance issues
+## Step 6 : Performance issues
 
 All in all, the game is overall not performance-hungry thanks to our work on the physic, as each player only needs to calculate his own movements and not the ones of the other players or monsters, which are transmitted by the server. However, the introduction of the forest made performance much tighter. Because of the high number of trees, the number of frames per seconds dropped really low. To improve that issue, we implemented an [LoD (Level of Detail)](https://en.wikipedia.org/wiki/Level_of_detail_(computer_graphics)) on trees so that we don't have to display high-quality details from afar. We create the trees as instances of the model, for which we freeze the coordinates to lower the computation as much as possible. After working on that, we managed to get back to a good amount of frame per seconds.
 
@@ -129,7 +131,7 @@ Another important part of performance is that we avoid using collision on comple
 
 It is also interesting to notice that the game physic does not depend on the performance. We use the time between each frame to scale the movements made during physic calculations, so that a player with less frame per seconds will still go at the same speed as others.
 
-## Step 7 : the monsters
+## Step 7 : The monsters
 
 With our approach on the *dumb server* issue, we had difficulties on how to implement the monster's artificial intelligence and movements. Here are the options that were considered:
 
@@ -146,7 +148,7 @@ To be able to control our server's environment, we therefore used *Docker* to ma
 The process of building the frontend and the backend code, creating the docker container, pushing onto our repository, and updating the backend on Heroku was very long and tedious. In order to make our workflow easier and faster, and constantly update wrt our online version, we set up a continuous integration pipeline. In this way, a simple push on the game repository would automatically do all the tasks described above. This was a huge quality of life improvement for us and we'll be sure to incorporate it from the start in our future projects.
 
 
-## Step 9 : finalization
+## Step 9 : Finalization
 
 With the biggest stepping stone now done, it was time to enter the finalization stage of the game. We had a lot of small bugs to fix and improvements to make so that our game become more of a finalized project and less of a early concept.
 
@@ -182,3 +184,25 @@ While the project is deployed on heroku and playable simply by clicking on [this
 - *npm run client* to launch the javascript client
 
 > Note: To run the project, you will need to install cargo and nodejs to respectively execute the server (coded in rust) and the client (coded in javascript)
+
+# Used Libraries/Frameworks
+
+For the development of the game we used the following libraries/frameworks
+
+- **BabylonJs** (v. 5.17.1) to render the 3D part of the game 
+- **ReactJs** (v. 16.13.1) to structure and easily maintain our frontend
+- **Bootstrap** (v. 5.2.3) to customize our welcome page with standard css styles
+- **Docker** (v. 24.0.2) to containerize the project 
+- **GitHub workflow** to:
+  - build the dockerized version of the server and push it on **Heroku**
+  - compile the sources of the client and push them on a dedicated branch (called *branch-client*) of github
+- **Github action** to automatically push *branch-client* on *github.io*
+  
+Programming languages:
+
+- **Typescript** (the typed version of javascript) to implement the game  
+- **Rust** to implement the server
+
+Hosts the game:
+- **github.io** for the client side
+- **heroku** for the server side
