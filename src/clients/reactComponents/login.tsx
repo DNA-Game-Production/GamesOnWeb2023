@@ -100,7 +100,8 @@ export class ReactLogin extends Component<Props, State> {
                   <li> Q : rotate left </li>
                   <li> D : rotate right </li>
                   <li> Move Mouse: rotate </li>
-                  <li> Left Click : Attack </li>
+                  <li> Left Click : Punch </li>
+                  <li> Right Click : Throw </li>
                   <li> SPACE : jump </li>
                   <li> SPACE (while falling) : deploy glider </li>
                   <li> ENTER : open the in-game chat </li>
