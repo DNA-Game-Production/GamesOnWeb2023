@@ -10,6 +10,7 @@ export class Ranger extends Player {
 
     constructor(scene: Scene, avatar_username: string) {
         super(scene, avatar_username, ModelEnum.Ranger.intrinsicParameterMesh)
+        this.update_status("Idle")
     }
 
     attack_0(onlyDisplay = false) {

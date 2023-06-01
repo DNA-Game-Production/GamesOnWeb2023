@@ -3,7 +3,8 @@ import { ALL_CLASSES } from "./classesTypes";
 let buildStatusDict = (p: { [x in CharacterStatus]?: number }) => {
   let statusDict: Record<CharacterStatus, number> = {
     Idle: -1, Dying: -1, Falling: -1, Jumping: -1, Punching: -1, Running: -1,
-    Walking_bw: -1, Walking_fw: -1, Swimming: -1, TakingHit: -1, Gliding: -1
+    Walking_bw: -1, Walking_fw: -1, Swimming: -1, TakingHit: -1, Gliding: -1,
+    Spawn: -1
   }
   Object.keys(p).forEach(x => { statusDict[x as CharacterStatus] = p[x as CharacterStatus]! })
   return statusDict
@@ -16,7 +17,7 @@ let buildAttackSpeed = (p: { [x in ATTACK_TYPE]?: number }) => {
 }
 
 export type ATTACK_TYPE = "ATTACK_0" | "ATTACK_1" | "ATTACK_2" | "ATTACK_3"
-export type CharacterStatus = "Idle" | "Walking_fw" | "Walking_bw" | "Running" | "Punching" | "Swimming" | "Jumping" | "Falling" | "Dying" | "TakingHit" | "Gliding"
+export type CharacterStatus = "Idle" | "Walking_fw" | "Walking_bw" | "Running" | "Punching" | "Swimming" | "Jumping" | "Falling" | "Dying" | "TakingHit" | "Gliding" | "Spawn"
 
 interface intrinsicModelPropertiesOptional1 {
   height?: number;

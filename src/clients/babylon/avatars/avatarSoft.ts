@@ -55,7 +55,7 @@ export abstract class AvatarSoft extends MeshWithHealth {
     this.canMove = true;
     this.takeHits = true;
 
-    this.status = "Idle"
+    this.status = "Spawn"
 
     this.falling_counter = 20;
     this.lastTouchGroundTime = Date.now()
