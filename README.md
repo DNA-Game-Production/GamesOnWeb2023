@@ -52,6 +52,9 @@ Because of humanity's *greed* and *avidity*, the planet ran out of resources and
 
 This is a multiplayer game, so you might not be the only survivor on the archipelago. Other players live and die by the same rules as you, so choose to cooperate with them in order to become stronger as a group. Or, you could also attack them to make the archipelago your own...
 
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/e6ddfcc6-5052-40e1-b2f9-dd7a0d970037)
+
+
 ## Controls
 
 - `Z`: walk forward
@@ -102,6 +105,8 @@ One choice we made very early in the development was not use the whole BabylonJS
 
 Gravity's interactions were quite tricky to implement. We assigned to the player a variable representing his current acceleration vector. It is then easy at first to implement the gravity or other kind of propulsion such as jumps. However, gravity created difficulties when combined with collisions with the ground. If we always applied gravity the player would glide over even the smoother slope as we wanted something lighter than friction forces. To solve this problem, we opted to cast an invisible laser below the player that once detect an intersection with the ground will not apply the gravity force on the player. We can adjust the size of the laser to change the maximum degree of slope the player can climb.
 
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/7fd81ca3-5cf6-4e5f-b6ef-bcffabddbf5a)
+
 Something else we had fun experimenting with was fall damage. The simplest implementation was to use the previously created acceleration vector and assign fall damage proportional to it. However, this created some frustrating and unintuitive behavior where the player would die after gently gliding in a slope. We managed to assign fairer fall damage by giving to the player variables representing his height position and time when he last touched the ground. If, after a fall, the difference of height was to high and the difference of time was too low, that would mean the player made a large and hard fall, and they would take fall damage. This implementation created a much more consistent behavior.
 
 ## Step 4 : Creation of the World
@@ -116,8 +121,13 @@ After a lot of experimentation, we managed to create satisfying terrain models u
 
 We created the water out of simple plan to which we gave the very convenient WaterMaterial found in the BabylonJS library with parameters adjusted to our needs. We also implemented a tide that rhythm the accessibility of the different islands. When under the water plan, the player enter a swimming state and can drown if they stay for too long. Under the water plan, a sand ground is there, with varying heights to create path between the islands depending on the tide.
 
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/4ae11aa9-a557-47b4-a678-1baec8bf52f0)
+
 Finally, we wanted to have a **Day/Night cycle** that would make the landscape more varied and would rhythm the gameplay. We instantiated animation on the lightning and sky, which contains a lot of parameters in its material to simulate a real sky. While it was quite a long job to animate all the different needed details for the light and color of the sky wrt different hours of the day, it was well worth it as we feel it was the final touch that finally brought the "wow" we were looking for.
 
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/0b1927f9-441e-4366-83c1-6015f9c6de2b)
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/177fe3b3-f874-4571-a624-f28e2264d132)
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/e562dfd8-e4c2-4443-9f2e-f5862f434972)
 
 ## Step 5 : Camera movement
 
@@ -127,6 +137,8 @@ BabylonJS offers some interesting options for cameras, however our specific need
 ## Step 6 : Performance issues
 
 All in all, the game is overall not performance-hungry thanks to our work on the physic, as each player only needs to calculate his own movements and not the ones of the other players or monsters, which are transmitted by the server. However, the introduction of the forest made performance much tighter. Because of the high number of trees, the number of frames per seconds dropped really low. To improve that issue, we implemented an [LoD (Level of Detail)](https://en.wikipedia.org/wiki/Level_of_detail_(computer_graphics)) on trees so that we don't have to display high-quality details from afar. We create the trees as instances of the model, for which we freeze the coordinates to lower the computation as much as possible. After working on that, we managed to get back to a good amount of frame per seconds.
+
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/18710c13-4a16-4693-b48a-000ec72ce305)
 
 Another important part of performance is that we avoid using collision on complex models (player's model, trees...), and instead link objects to a simple *hitbox* corresponding to the shape of the model, often a cylinder.
 
@@ -139,6 +151,8 @@ With our approach on the *dumb server* issue, we had difficulties on how to impl
 - One client chosen as the host for the game, which means the monster's calculations would be made on his side for everyone. Not only this option could create wrong behaviors and large inconveniences if the host doesn't have a performant enough computer, this would also create difficult to handle cases when the host disconnects.
 - Each client spawn a few monsters and handles them. This is a rather elegant solution, however it introduces a lot of problems on players disconnection as any monster could disappear.
 - The server, when launched, instantiate a special "server-side client", which is a **windowless BabylonJS process** containing a minimalist version of the game charged of the monster's intelligence and movements. This is the option we ended up choosing as it is a lot more straightforward to implement and we were more limited in resources on the client-side than on the server-side.
+
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/d9a477a1-c0ff-4311-9937-8d4f7d86a2e1)
 
 ## Step 8 : Deployment
 
@@ -158,6 +172,7 @@ First of all we had to use proper character models and animate them. We tried a 
 - "dying"
 - "swimming"
 - "gliding"
+- And many more...
 
 The model's animation are activated according to a state machine using these state and their transitions. We also enabled blending for our models' animation so that we get smooth transitions between all animations.
 
@@ -167,7 +182,13 @@ We used postPrecessing to add a vignette when the player is under water to make 
 
 It is also important in a game to have a pleasing soundscape so that it does not feel dull. While we kept things quite calm to not distract the player too much, we added the necessary sounds to make the world feel more alive.
 
+The game at this stage was working as we wanted but it lacked some meaningful activity to do during the day and a reason to explore the world. Therefore, we added helpful fruit plants that could be hit by the player so that they gain back some of their lost health. The plant then is destroyed and will reappear only 100 second later. Not only this make it very useful to explore as you get to know the different fruit plant spots, it also introduces some drawback to always sticking as a groupe of player and could encourage some hostile behavior between players as the resource is quite limited, which in our opinion makes the game more interesting as there are incentives both to cooperate or to defend your ground against others.
+
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/ba6e360c-67f7-4557-ab01-0f14800bc2ff)
+
 Finally, what is a third person action game without a glider? A lot of the major game releases that looks anything alike our game have a glider in it, and for good reasons - it's just that fun! This is one of the final touches that gave a little extra to the game, and with the work on the scenery, a glider felt like the perfect addition to get a better view while having a funnier way to move around. Moreover, it was a rather easy addition as we just needed to give the player a constant vertical force and prevent the gravity to accelerate them while they glide. We added a laser below the player to check if they have enough space to glide before allowing them to do so, so go jump from the tallest cliff you can find and spring your wings!
+
+![image](https://github.com/DNA-Game-Production/GamesOnWeb2023/assets/56736268/2f6113cb-d101-42a0-9b86-667d8ede9d68)
 
 # Perspectives
 
