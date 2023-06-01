@@ -117,7 +117,7 @@ export class ConnectionClient extends ConnectionSoft<Player, Monster, Plant, Sce
                 let plantRespawn = new Plant(scene, messageReceived.content, plant_position)
                 this.plant_list.set(messageReceived.content, plantRespawn)
             }
-        }, 10000)
+        }, 100000)
     }
 
     kill_all_night_monster(messageReceived: any) {
