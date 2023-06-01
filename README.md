@@ -18,6 +18,8 @@
   - [Step 9 : finalization](#step-9--finalization)
 - [Perspectives](#perspectives)
 - [Launch the Game Localy](#launch-the-game-localy)
+  
+# [Videos](https://www.youtube.com/@d.n.agameproduction6032)
 
 
 # The team
@@ -26,7 +28,7 @@
 | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
 | <img src="https://zupimages.net/up/23/06/ol5u.png" alt="Fissore Davide" width="200"/> | <img src="https://zupimages.net/up/22/19/dak6.png" alt="BERNIGAUD Noé" width="200"/> |
 
-We are students at the University of Côte d'Azur..
+We are students at the University of Côte d'Azur.
   
 - FISSORE Davide was in charge of the menus and UI, the structure of the project, DevOps pipelines and deployment.</li>
 - BERNIGAUD Noé was taking care of the rust server, the islands creation, the models and their animations, the game physics, gameplay and sounds.
