@@ -61,7 +61,7 @@ export abstract class Player extends Avatar {
             this.oxygen--
             if (this.oxygen <= 0 && this.currentHealth > 0) this.healthSet(0)
         } else {
-            this.oxygen = 1000
+            this.oxygen = 300
             if (this.getStatus() === "Swimming") this.update_status("Idle", true, true)
         }
     }
