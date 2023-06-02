@@ -216,12 +216,11 @@ export class ModelEnum {
             loadingRef.current!.updateContent()
 
             if (ModelEnum.remainingLoad === 0) {
-                startRenderLoop(engine);
                 setTimeout(() => {
                     wsClient.setEventListener()
-                    engine.resize()
                     sendLogin();
-                }, 8000);
+                    startRenderLoop(engine);
+                }, 5000);
             }
         }
     }
