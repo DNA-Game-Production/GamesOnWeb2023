@@ -253,9 +253,9 @@ export class SceneClient extends SceneSoft {
                     this.createInstance(model, x, height, z);
                 }
             }
-
-            ModelEnum.loadingDone();
         }
+
+        ModelEnum.loadingDone();
     }
 
     private treeGeneration() {
@@ -349,9 +349,8 @@ export class SceneClient extends SceneSoft {
             //         this.createThinInstance(c2m, x, height, z, matrix);
             //     }
             // });
-
-            ModelEnum.loadingDone();
         }
+        ModelEnum.loadingDone();
 
     }
 
@@ -394,9 +393,8 @@ export class SceneClient extends SceneSoft {
                 }
 
             }
-
-            ModelEnum.loadingDone();
         }
+        ModelEnum.loadingDone();
     }
 
     private createThinInstance(model: Mesh, x: number, height: number, z: number, transformMatrix?: Matrix): Matrix {
