@@ -219,6 +219,7 @@ export class ModelEnum {
             loadingRef.current!.updateContent()
 
             if (ModelEnum.remainingLoad === 0) {
+                console.log("model load finished v2.5");
                 setTimeout(() => {
                     wsClient.setEventListener()
                     sendLogin();
