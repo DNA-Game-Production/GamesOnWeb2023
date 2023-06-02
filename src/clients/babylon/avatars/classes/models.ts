@@ -114,10 +114,7 @@ export class ModelEnum {
                     break;
 
                 case "Plant":
-                    meshes.forEach(m => {
-                        m.isPickable = false;
-                        m.checkCollisions = false;
-                    });
+
                     break;
 
                 case "Campfire":
@@ -219,10 +216,7 @@ export class ModelEnum {
             loadingRef.current!.updateContent()
 
             if (ModelEnum.remainingLoad === 0) {
-                setTimeout(() => {
-                    startRenderLoop(engine);
-                }, 5000);
-
+                startRenderLoop(engine);
                 setTimeout(() => {
                     wsClient.setEventListener()
                     engine.resize()
