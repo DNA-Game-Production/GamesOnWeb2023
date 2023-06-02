@@ -116,7 +116,10 @@ export class ModelEnum {
                     break;
 
                 case "Plant":
-
+                    meshes.forEach(m => {
+                        m.isPickable = false;
+                        m.checkCollisions = false;
+                    });
                     break;
 
                 case "Campfire":
