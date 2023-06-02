@@ -52,7 +52,7 @@ export abstract class Avatar extends AvatarSoft {
     this.statusStacks = { burn: 0, poison: 0, bleed: 0 }
 
     for (let aniCounter = 0; aniCounter < this.modelContainer.animationGroups.length; aniCounter++) {
-      console.log("set up animation transition for groupe " + aniCounter + " (" + this.modelContainer.animationGroups[aniCounter].name);
+      //console.log("set up animation transition for groupe " + aniCounter + " (" + this.modelContainer.animationGroups[aniCounter].name);
 
       for (let index = 0; index < this.modelContainer.animationGroups[aniCounter].targetedAnimations.length; index++) {
         let animation = this.modelContainer.animationGroups[aniCounter].targetedAnimations[index].animation
@@ -126,11 +126,11 @@ export abstract class Avatar extends AvatarSoft {
       //bleed, large damage over long period, does not cumulate
       case "bleed":
         if (this.statusStacks.bleed >= 1) {
-          console.log("bleed already applied");
+          //console.log("bleed already applied");
           return
         }
         this.statusStacks.bleed++
-        console.log("applying bleed, stack now ", this.statusStacks.bleed);
+        //console.log("applying bleed, stack now ", this.statusStacks.bleed);
         var bleedingDamage = setInterval(() => {
           if (this) this.take_damage(this.shape.position, 5, 0)
         }, 200)
@@ -141,7 +141,7 @@ export abstract class Avatar extends AvatarSoft {
         break;
 
       default:
-        console.log(statut, " effect does not exist");
+      //console.log(statut, " effect does not exist");
     }
   }
 

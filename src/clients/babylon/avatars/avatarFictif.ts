@@ -17,7 +17,7 @@ export class AvatarFictive extends AvatarSoft {
 
     knockback(direction: Vector3, power: number, cumulate = false) {
         if (this.canMove || cumulate) {
-            console.log("call to knockback on ", this.name);
+            //console.log("call to knockback on ", this.name);
             direction.normalize()
             direction.y += 0.2
             direction.normalize()

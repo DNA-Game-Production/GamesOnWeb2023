@@ -96,23 +96,13 @@ export class ConnectionClient extends ConnectionSoft<Player, Monster, Plant, Sce
      * @param messageReceived 
      */
     remove_plant(messageReceived: any) {
-        console.log("plant to kill username: " + messageReceived.content);
         let plant_to_kill = this.plant_list.get(messageReceived.content);
-        console.log("plant to kill: " + plant_to_kill);
-
         let plant_position = plant_to_kill?.shape.position;
-        console.log("plant_position" + plant_position);
-
         if (plant_to_kill !== undefined) plant_to_kill.dispose();
         this.plant_list.delete(messageReceived.content);
 
-        console.log("plant_position" + plant_position);
-
         setTimeout(() => {
-            console.log("TIMEOUT PLANT RESPAWN");
-            console.log("plant_position" + plant_position + "scene" + scene);
             if (scene && plant_position) {
-                console.log("ENTER IF");
                 this.plant_list.get(messageReceived.content)?.dispose()
                 let plantRespawn = new Plant(scene, messageReceived.content, plant_position)
                 this.plant_list.set(messageReceived.content, plantRespawn)
@@ -299,7 +289,7 @@ export function avatar_update_from_server(data: receiveContent, list: Map<String
     }
 
     //for debugging, should NOT happen ever
-    else { console.log("WTF???????") }
+    else { console.log("for debugging, should NOT happen ever") }
 }
 
 export function establishConnection(className: PLAYER_CLASSES_TYPE, name: string) {

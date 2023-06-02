@@ -63,7 +63,7 @@ export abstract class Projectile {
 
   update() {
     if (this.speedCoeff <= 0.02) {
-      console.log("DEBUG: projectile ", this.name, " is too slow (", this.speedCoeff, "), is disposed.");
+      //console.log("DEBUG: projectile ", this.name, " is too slow (", this.speedCoeff, "), is disposed.");
       this.dispose();
     }
     this.shape.moveWithCollisions(this.angle.scale(this.speedCoeff * renderTimeRatio))

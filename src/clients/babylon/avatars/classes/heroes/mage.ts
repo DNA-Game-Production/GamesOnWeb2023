@@ -13,7 +13,7 @@ export class Mage extends Player {
 
   attack_0(onlyDisplay = false) {
     //tire une fleche monocible avec une proba d'empoisoner l'ennemi
-    console.log("archer ", this.name, " casts normal attack");
+    //console.log("archer ", this.name, " casts normal attack");
     scene.projectileList.push(new Arrow(this, onlyDisplay, {}))
   }
 
@@ -23,7 +23,7 @@ export class Mage extends Player {
 
     if (onlyDisplay) return
     //fait un bond arrière puis tire une volée de flèche en l'air sur son ancienne position, tombant en cercle à son ancienne position et infligeant des dégats
-    console.log("archer ", this.name, " casts special attack");
+    //console.log("archer ", this.name, " casts special attack");
     var directionArcher = this.shape.getDirection(Axis.Z)
     var positionCast = this.shape.position.clone()
     this.knockback(new Vector3(-directionArcher.x, 0, -directionArcher.z), 2, true)

@@ -114,7 +114,7 @@ function zombie_apply_AI(monster: AvatarSoft) {
 }
 
 export function generate_zombie_wave() {
-  console.log(ws.player_list.values());
+  //console.log(ws.player_list.values());
 
   for (var player of ws.player_list.values()) {
 

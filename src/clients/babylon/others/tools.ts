@@ -47,7 +47,7 @@ export function isVector3Equal(v1: Vector3, v2: Vector3) {
 
 
 export var createLabel = function (text: string, mesh: Avatar, scene: Scene, p?: intrinsicModelProperties) {
-    console.log(p);
+    //console.log(p);
 
     var plane = MeshBuilder.CreatePlane(text + "plane", { size: 5 }, scene);
     plane.billboardMode = Mesh.BILLBOARDMODE_Y;
@@ -149,7 +149,7 @@ export function teleport(mesh: AvatarSoft, position: Vector3, offsetY = 3) {
     if (heightGround) {
         mesh.shape.position = new Vector3(position.x, heightGround + offsetY, position.z)
         mesh.setRayPosition()
-    } else { console.log("t'as pas de sol là bas"); }
+    } else { console.log("tried to teleport on position without a ground"); }
 }
 
 export function getAvatarByShape(shape: AbstractMesh, lists = [wsClient.monster_list, wsClient.player_list]) {
@@ -193,7 +193,7 @@ export function isInCone(positionTarget: Vector3, centerHitbox: Vector3, rayon: 
 }
 
 export function playerClassCreator(playerClass: PLAYER_CLASSES_TYPE, username: string): Player {
-    console.log(playerClass);
+    //console.log(playerClass);
 
     switch (playerClass) {
         case "Mage":

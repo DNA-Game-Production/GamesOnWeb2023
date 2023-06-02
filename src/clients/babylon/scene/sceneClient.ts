@@ -383,7 +383,7 @@ export class SceneClient extends SceneSoft {
                 let x = Math.random() * 150 - 75 + 400;
                 let z = Math.random() * 150 - 75 + 100;
                 let height = this.getHeightAtPoint(x, z);
-                console.log("{ x: ", (Math.round(x * 100) / 100).toFixed(2), ", z: ", (Math.round(z * 100) / 100).toFixed(2), " }");
+                //console.log("{ x: ", (Math.round(x * 100) / 100).toFixed(2), ", z: ", (Math.round(z * 100) / 100).toFixed(2), " }");
 
                 if (height !== undefined && model !== undefined && mergedmodel) {
                     this.createInstance(mergedmodel, x, height, z)

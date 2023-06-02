@@ -19,9 +19,9 @@ let doneOnce = false;
 export var startRenderLoop = function (engine: Engine) {
 
   setInterval(() => {
-    console.log(engine.getFps().toFixed() + " fps")
-    console.log("state: " + sphere1?.shape.position);
-  }, 2000)
+    console.log(engine.getFps().toFixed() + " current fps")
+    console.log("player's position: " + sphere1?.shape.position);
+  }, 10000)
 
   engine.runRenderLoop(function () {
     if (scene && scene.activeCamera) {
@@ -87,7 +87,7 @@ export let initFunction = async function () {
 
 export function set_my_sphere() {
   sphere1?.dispose();
-  console.log("Setting sphere");
+  console.log("Setting player");
 
   let player_sphere = wsClient.player_list.get(username);
   if (player_sphere) {
