@@ -135,7 +135,7 @@ export class Chat extends Component<{}, { visible: boolean, content: MessageCont
     isMessagePlayer = (m: string) => messagePlayersList.includes(m as MessagePlayers)
 
     senderTextDisplay(e: { sender: string, msgType: MessageType, content: string }) {
-        return " " + (this.isMessagePlayer(e.msgType) ? "Mage" : e.content) + " " + e.sender
+        return " " + (this.isMessagePlayer(e.msgType) ? "Ranger" : e.content) + " " + e.sender
     }
 
     messagePlayers(e: { msgType: MessageType, content: string }) {
