@@ -88,10 +88,10 @@ function keyListener(evt: KeyboardEvent, isPressed: boolean) {
         inputStates.run = isPressed
     }
 
-    // mega jump (development only)
-    else if (evt.code === "KeyK") {
-        if (sphere1) sphere1.shape.position.y += 10
-    }
+    // mega cheat jump (development only)
+    // else if (evt.code === "KeyK") {
+    //     if (sphere1) sphere1.shape.position.y += 10
+    // }
 
     //rotation
     else if (evt.code === "ArrowRight") {
