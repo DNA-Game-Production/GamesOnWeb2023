@@ -64,8 +64,6 @@ export class ModelEnum {
 
             let model;
 
-            ModelEnum.loadingDone();
-
             switch (className) {
                 case "Grass":
                     meshes.forEach(m => {
@@ -189,6 +187,8 @@ export class ModelEnum {
                     scene.setUpForCactus();
                     break;
             }
+
+            ModelEnum.loadingDone();
         })
     }
 
@@ -219,7 +219,7 @@ export class ModelEnum {
             loadingRef.current!.updateContent()
 
             if (ModelEnum.remainingLoad === 0) {
-                console.log("model load finished v2.6");
+                console.log("model load finished v2.7");
 
                 startRenderLoop(engine);
 
