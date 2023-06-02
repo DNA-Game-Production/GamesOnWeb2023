@@ -64,6 +64,8 @@ export class ModelEnum {
 
             let model;
 
+            ModelEnum.loadingDone();
+
             switch (className) {
                 case "Grass":
                     meshes.forEach(m => {
@@ -184,8 +186,6 @@ export class ModelEnum {
                     scene.setUpForCactus();
                     break;
             }
-
-            ModelEnum.loadingDone();
         })
     }
 
