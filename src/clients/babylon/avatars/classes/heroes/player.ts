@@ -34,6 +34,9 @@ export abstract class Player extends Avatar {
             this.takeHits = false
             if (this === sphere1) {
                 this.update_status("Dying", false, true)
+                var audio = new Audio('audio/fall-death.mp3');
+                audio.volume = 0.4;
+                audio.play();
                 setTimeout(() => { if (scene) scene.triggerPostProcessAnimation("fadin", scene.fadinVignetteAnimation) }, 3000)
                 setTimeout(() => { if (this) this.spawn() }, 8000)
             }

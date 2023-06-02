@@ -24,10 +24,16 @@ export class StoneProjectile extends Projectile {
             var monster = getAvatarByShape(mesh, [wsClient.monster_list])
             if (monster) {
                 monster.take_damage(this.shape.position, this.damage)
+                var audio = new Audio('audio/punch.wav');
+                audio.volume = 0.15;
+                audio.play();
             }
             var player = getAvatarByShape(mesh, [wsClient.player_list])
             if (player && player !== sphere1) {
                 player.take_damage(this.shape.position, this.damage)
+                var audio = new Audio('audio/punch.wav');
+                audio.volume = 0.15;
+                audio.play();
             }
         }
         this.dispose()
