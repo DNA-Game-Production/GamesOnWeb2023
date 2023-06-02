@@ -23,7 +23,7 @@ export class ReactLoadingScreen extends Component<Props, { content: number, end:
       }, 1500);
       setTimeout(() => {
         this.props.setSection("GAME");
-      }, 5000);
+      }, 10000);
     }
   }
 

@@ -219,12 +219,15 @@ export class ModelEnum {
             loadingRef.current!.updateContent()
 
             if (ModelEnum.remainingLoad === 0) {
-                console.log("model load finished v2.5");
+                console.log("model load finished v2.6");
+
+                startRenderLoop(engine);
+
                 setTimeout(() => {
                     wsClient.setEventListener()
                     sendLogin();
-                    startRenderLoop(engine);
-                }, 5000);
+                    engine.resize()
+                }, 10000);
             }
         }
     }
