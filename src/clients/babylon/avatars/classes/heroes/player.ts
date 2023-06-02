@@ -19,7 +19,7 @@ export abstract class Player extends Avatar {
         }
         scene.triggerPostProcessAnimation("hit", scene.hitVignetteAnimation)
         var audio = new Audio('audio/punch.wav');
-        audio.volume = 0.2;
+        audio.volume = 0.4;
         audio.play();
     }
 
@@ -38,7 +38,7 @@ export abstract class Player extends Avatar {
             if (this === sphere1) {
                 this.update_status("Dying", false, true)
                 var audio = new Audio('audio/fall-death.mp3');
-                audio.volume = 0.4;
+                audio.volume = 0.8;
                 audio.play();
                 setTimeout(() => { if (scene) scene.triggerPostProcessAnimation("fadin", scene.fadinVignetteAnimation) }, 3000)
                 setTimeout(() => { if (this) this.spawn() }, 8000)

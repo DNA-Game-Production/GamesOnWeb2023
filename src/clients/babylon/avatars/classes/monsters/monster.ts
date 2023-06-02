@@ -12,7 +12,7 @@ export class Monster extends Avatar {
         super(scene, avatar_username, ModelEnum.NightMonster.intrinsicParameterMesh)
         if (sphere1 && distance(this.shape.position, sphere1?.shape.position) < 100) {
             var audio = new Audio('audio/roar.mp3');
-            audio.volume = 0.1;
+            audio.volume = 0.2;
             audio.play();
         }
     }

@@ -39,7 +39,7 @@ export class Ranger extends Player {
                     if (isInHitzone(monster.shape, hitzone)) {
                         monster.take_damage(this.shape.position, 20);
                         var audio = new Audio('audio/punch.wav');
-                        audio.volume = 0.2;
+                        audio.volume = 0.4;
                         audio.play();
                         //set bounding box color to green if it hits a monster
                         //bboxGizmo.setColor(new Color3(0, 1, 0))
@@ -50,7 +50,7 @@ export class Ranger extends Player {
                     if (player !== this && isInHitzone(player.shape, hitzone)) {
                         player.send_this_take_damage(20);
                         var audio = new Audio('audio/punch.wav');
-                        audio.volume = 0.2;
+                        audio.volume = 0.4;
                         audio.play();
                         //set bounding box color to blue if it hits a player
                         //bboxGizmo.setColor(new Color3(0, 0, 1))
