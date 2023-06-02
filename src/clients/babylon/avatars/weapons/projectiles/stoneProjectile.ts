@@ -16,7 +16,7 @@ export class StoneProjectile extends Projectile {
             opt.range || 50,
             opt.speed || 0.40,
             undefined,
-            { direction: opt.direction || defaultAngle, position: opt.position || myShooter.shape.position.clone().add(new Vector3(0, 2, 0)) })
+            { direction: opt.direction || defaultAngle, position: opt.position || myShooter.shape.position.clone().add(new Vector3(0, 1.6, 0)) })
     }
 
     collide(mesh: AbstractMesh | undefined) {

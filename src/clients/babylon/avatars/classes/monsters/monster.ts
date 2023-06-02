@@ -10,7 +10,7 @@ export class Monster extends Avatar {
 
     constructor(scene: Scene, avatar_username: string) {
         super(scene, avatar_username, ModelEnum.NightMonster.intrinsicParameterMesh)
-        if (sphere1 && distance(this.shape.position, sphere1?.shape.position) < 40) {
+        if (sphere1 && distance(this.shape.position, sphere1?.shape.position) < 100) {
             var audio = new Audio('audio/roar.mp3');
             audio.volume = 0.1;
             audio.play();
@@ -62,9 +62,6 @@ export class Monster extends Avatar {
                 hitzone.computeWorldMatrix(true);
                 if (sphere1 && isInHitzone(sphere1.shape, hitzone)) {
                     sphere1?.take_damage(this.shape.position, 10);
-                    var audio = new Audio('audio/punch.wav');
-                    audio.volume = 0.2;
-                    audio.play();
                     //set bounding box color to green if it hits the player
                     // bboxGizmo.setColor(new Color3(0, 1, 0))
                 }

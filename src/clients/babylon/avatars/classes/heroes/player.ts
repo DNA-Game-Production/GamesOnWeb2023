@@ -18,6 +18,9 @@ export abstract class Player extends Avatar {
             this.knockback(direction.normalize(), knockback_power / this.weightCategory)
         }
         scene.triggerPostProcessAnimation("hit", scene.hitVignetteAnimation)
+        var audio = new Audio('audio/punch.wav');
+        audio.volume = 0.2;
+        audio.play();
     }
 
     send_this_take_damage(amount: number) {
