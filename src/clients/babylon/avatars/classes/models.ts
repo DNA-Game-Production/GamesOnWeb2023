@@ -220,11 +220,14 @@ export class ModelEnum {
 
             if (ModelEnum.remainingLoad === 0) {
                 setTimeout(() => {
-                    wsClient.setEventListener()
                     startRenderLoop(engine);
-                    sendLogin();
                 }, 5000);
 
+                setTimeout(() => {
+                    wsClient.setEventListener()
+                    engine.resize()
+                    sendLogin();
+                }, 8000);
             }
         }
     }
